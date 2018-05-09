@@ -21,8 +21,6 @@ $ npm run build && npm start
 
 support node/docker/now
 
-support proxy/noProxy mode to fix different
-
 ### node
 
 run nodejs in your server
