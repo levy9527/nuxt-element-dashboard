@@ -1,16 +1,16 @@
-let apiServer = 'http://test.domain'
+let apiServer = 'http://prod.domain'
 let mockServer = 'http://dsn.apizza.cc/mock/710f9fb77f08d7a01fce444be84dff6e'
 
 let axios = {
   proxy: true
 }
 
-// TODO 部署放到kong后面不代理
+// 生产部署放到kong后面不代理
 if (process.env.mode == 'prod') {
-  // axios = {
-  //   proxy: false,
-  //   baseURL: apiServer
-  // }
+  axios = {
+    proxy: false,
+    baseURL: apiServer
+  }
 }
 
 module.exports = {
@@ -74,8 +74,7 @@ module.exports = {
   },
   router: {
     middleware: ['auth']
-    // TODO 部署到kong 时需要 context
-    // base: process.env.mode == 'prod' ? '/pyramid-dashboard/' : '/'
+      base: process.env.mode == 'prod' ? '/pyramid-dashboard/' : '/'
   },
   plugins: [{src: '~/plugins/axios'}, {src: '~/plugins/element'}],
   modules: ['@nuxtjs/axios'],
