@@ -73,8 +73,8 @@ module.exports = {
     }
   },
   router: {
-    middleware: ['auth']
-      base: process.env.mode == 'prod' ? '/pyramid-dashboard/' : '/'
+    middleware: ['auth'],
+    base: process.env.mode == 'prod' ? '/pyramid-dashboard/' : '/'
   },
   plugins: [{src: '~/plugins/axios'}, {src: '~/plugins/element'}],
   modules: ['@nuxtjs/axios'],
