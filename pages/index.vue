@@ -109,9 +109,9 @@ export default {
         },
         {
           $type: 'checkbox',
-          $id: 'noPagination',
-          label: '不分页',
-          $default: false
+          $id: 'hasPagination',
+          label: '是否分页',
+          $default: true
         },
         {
           $type: 'checkbox',
@@ -157,8 +157,8 @@ export default {
       })
     },
     generate() {
-      let host = 'levy.ren'
-      //      let host = 'localhost'
+      //      let host = 'levy.ren'
+      let host = 'localhost'
 
       let api = `http://${host}:30000/generator/data-table`
 
