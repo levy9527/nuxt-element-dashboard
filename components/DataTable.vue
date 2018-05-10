@@ -108,7 +108,7 @@
 
     </el-table>
     <el-pagination
-      v-if="!noPagination"
+      v-if="hasPagination"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="page"
@@ -149,11 +149,11 @@ import _get from 'lodash/get'
 //              "total":2, // 总数
 //            }
 //          }
-// 如果接口不分页, 则传noPagination, 此时数据取 payload, 当然也可以自定义, 设置config.data即可
+// 如果接口不分页, 则传hasPagination=false, 此时数据取 payload, 当然也可以自定义, 设置dataPath即可
 
 const noPaginationDataPath = 'payload'
-const dataPath = 'payload.docs'
-const totalPath = 'payload.total'
+const dataPath = 'payload.content'
+const totalPath = 'payload.totalElements'
 const treeChildKey = 'children'
 const dialogForm = 'dialogForm'
 
@@ -161,6 +161,28 @@ const dialogForm = 'dialogForm'
 // 相关事件 selection-change, update (数据更新后触发)
 export default {
   props: {
+    url: {
+      type: String,
+      default: ''
+    },
+    firstPage: {
+      type: Number,
+      default: 1
+    },
+    dataPath: {
+      type: String,
+      default: dataPath
+    },
+    totalPath: {
+      type: String,
+      default: totalPath
+    },
+    columns: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
     // search字段渲染, 配置参考el-form-renderer
     searchForm: {
       type: Array,
@@ -173,30 +195,6 @@ export default {
       type: Object,
       default() {
         return {}
-      }
-    },
-    columns: {
-      type: Array,
-      default() {
-        return []
-      }
-    },
-    config: {
-      type: Object,
-      required: true,
-      // 有场景, 一进页面是没有数据的。
-      // 所以也不用验证, 加个提示就好了
-      //        validator: function (v) {
-      //          return !!v.url
-      //        },
-      default() {
-        return {
-          url: '',
-          // 查询对象, key:value 形式传入, 组件自动把参数拼接到url
-          query: {},
-          data: dataPath,
-          total: totalPath
-        }
       }
     },
     // 单选, 适用场景: 不可以批量删除
@@ -214,7 +212,7 @@ export default {
       type: Array,
       default() {
         return [
-          // {type: '', text: '', onClick: function (row) {}},
+          // {type: '', text: '', atClick: function (row) {}},
         ]
       }
     },
@@ -255,10 +253,9 @@ export default {
     onDelete: {
       type: Function
     },
-    // FIXME 要修改成 hasPagination
-    noPagination: {
+    hasPagination: {
       type: Boolean,
-      default: false
+      default: true
     },
     // 不分页时的size的大小
     noPaginationSize: {
@@ -308,9 +305,10 @@ export default {
   data() {
     return {
       data: [],
+      query: {},
       hasSelect: this.columns.length && this.columns[0].type == 'selection',
       size: 10,
-      page: 1,
+      page: this.firstPage,
       total: 0,
       loading: false,
       selected: [],
@@ -330,22 +328,22 @@ export default {
     this.getList()
   },
   watch: {
-    'config.query': function(val, old) {
-      this.page = 1
+    query: function(val, old) {
+      this.page = this.firstPage
       this.getList()
     },
-    'config.url': function(val, old) {
-      this.page = 1
+    url: function(val, old) {
+      this.page = this.firstPage
       this.getList()
     }
   },
   methods: {
     getList() {
-      let url = this.config.url
-      let query = this.config.query || {}
-      let size = this.noPagination ? this.noPaginationSize : this.size
+      let url = this.url
+      let query = this.query || {}
+      let size = this.hasPagination ? this.size : this.noPaginationSize
 
-      console.warn('DataTable: config.url 为空, 不发送请求')
+      console.warn('DataTable: url 为空, 不发送请求')
       if (!url) return
 
       // 拼接 query
@@ -369,15 +367,14 @@ export default {
       this.$axios
         .$get(url)
         .then(resp => {
-          let config = this.config
           let data = []
 
           // 不分页
-          if (this.noPagination) {
-            data = _get(resp, config.data || noPaginationDataPath) || []
+          if (!this.hasPagination) {
+            data = _get(resp, this.dataPath || noPaginationDataPath) || []
           } else {
-            data = _get(resp, config.data || dataPath) || []
-            this.total = _get(resp, config.total || totalPath)
+            data = _get(resp, this.dataPath) || []
+            this.total = _get(resp, this.totalPath)
           }
 
           this.data = data
@@ -413,11 +410,11 @@ export default {
     },
     onSearch() {
       const data = this.$refs.searchForm.getFormValue()
-      this.config.query = Object.assign({}, data)
+      this.query = Object.assign({}, data)
     },
     onResetSearch() {
       this.$refs.searchForm.resetFields()
-      this.config.query = {}
+      this.query = {}
     },
     // 弹窗相关
     onDefaultNew(e) {
@@ -478,7 +475,7 @@ export default {
         )
         // 默认新增
         let method = '$post'
-        let url = this.config.url + ''
+        let url = this.url + ''
 
         this.confirmLoading = true
 
@@ -514,7 +511,7 @@ export default {
           // 单个删除
           if (!this.hasSelect) {
             this.$axios
-              .$delete(this.config.url + '/' + row.id || row._id)
+              .$delete(this.url + '/' + row.id || row._id)
               .then(resp => {
                 this.getList()
 
@@ -524,7 +521,7 @@ export default {
             // 多选模式
             this.$axios
               .$delete(
-                this.config.url +
+                this.url +
                   '/' +
                   this.selected.map(v => v._id || v.id).toString()
               )
