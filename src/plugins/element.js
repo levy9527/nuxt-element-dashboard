@@ -43,6 +43,7 @@ import {
   Autocomplete
 } from 'element-ui'
 import ElFormRenderer from 'el-form-renderer'
+import ElDataTable from 'el-data-table'
 
 Vue.prototype.$ELEMENT = {size: 'medium'}
 
@@ -85,6 +86,7 @@ Vue.use(Steps)
 Vue.use(Step)
 
 Vue.component('el-form-renderer', ElFormRenderer)
+Vue.component('el-data-table', ElDataTable)
 
 Vue.prototype.$notify = Notification
 Vue.$notify = Notification

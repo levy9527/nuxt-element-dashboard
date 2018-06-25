@@ -16,6 +16,7 @@
       "npm config set puppeteer_download_host=https://npm.taobao.org/mirrors"
   },
   "dependencies": {
+    "el-data-table": "*",
     "@nuxtjs/axios": "^5.0.1",
     "el-form-renderer": "^1.0.2",
     "element-ui": "^2.2.0",

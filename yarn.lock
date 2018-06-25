@@ -2177,6 +2177,16 @@ ejs@^2.5.7:
   version "2.6.1"
   resolved "http://registry.npm.taobao.org/ejs/download/ejs-2.6.1.tgz#498ec0d495655abc6f23cd61868d926464071aa0"
 
+el-data-table@*:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/el-data-table/-/el-data-table-0.2.2.tgz#58cc1b05df3f47960c8405441daf58a1efac1f86"
+  dependencies:
+    axios "^0.18.0"
+    el-form-renderer "^1.0.2"
+    element-ui "^2.2.0"
+    lodash.get "^4.4.2"
+    vue "^2.5.16"
+
 el-form-renderer@^1.0.2:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/el-form-renderer/download/el-form-renderer-1.0.2.tgz#8470f1d5b6fd7c4da2070a3a8ac9817fe8ec1e97"
@@ -3685,6 +3695,10 @@ lodash.camelcase@^4.3.0:
 lodash.clonedeep@^4.5.0:
   version "4.5.0"
   resolved "http://registry.npm.taobao.org/lodash.clonedeep/download/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
+
+lodash.get@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
 
 lodash.isplainobject@^4.0.6:
   version "4.0.6"
