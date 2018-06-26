@@ -1,11 +1,25 @@
-let API_SERVER = 'http://119.29.28.59'
-const SECURITY_API_SERVER = 'http://119.29.28.59'
-const PROJECT_NO = ''
-const ALI_ICON_FONT = '//at.alicdn.com/t/font_574145_ufxg504x3zorms4i.css' // 阿里iconfont
+const config = {
+  projectNo: '',
+  aliIconFont: '//at.alicdn.com/t/font_574145_ufxg504x3zorms4i.css',
+  baseUrl: process.env.API_SERVER || '', // 生产环境且不走代理会用到
+  env: {
+    mock: {
+      '/api': 'http://yapi.demo.qunar.com/mock/9638',
+      '/security': 'http://119.29.28.59'
+    },
+    dev: {
+      '/api': 'http://119.29.28.59',
+      '/security': 'http://119.29.28.59'
+    },
+    prod: {
+      // 生产环境，docker传参
+      '/api': process.env.API_SERVER,
+      '/security': process.env.SECURITY_API_SERVER
+    }
+  }
+}
 
-let mockServer = 'http://yapi.demo.qunar.com/mock/9638'
-let apiServer = process.env.API_SERVER || API_SERVER
-let securityApiServer = process.env.SECURITY_API_SERVER || SECURITY_API_SERVER
+const mode = process.env.MODE
 let axios = {}
 
 let context =
@@ -13,7 +27,6 @@ let context =
     ? `/${process.env.CONTEXT}/`
     : '/'
 
-// 部署放到kong后面不代理
 if (process.env.IS_PROXY) {
   axios = {
     proxy: true
@@ -21,13 +34,13 @@ if (process.env.IS_PROXY) {
 } else {
   axios = {
     proxy: false,
-    baseURL: apiServer
+    baseURL: config.baseUrl
   }
 }
 
 module.exports = {
   env: {
-    PROJECT_NO: process.env.PROJECT_NO || PROJECT_NO
+    PROJECT_NO: process.env.PROJECT_NO || config.projectNo
   },
   /*
   ** Headers of the page
@@ -52,7 +65,7 @@ module.exports = {
       {
         rel: 'stylesheet',
         type: 'text/css',
-        href: ALI_ICON_FONT
+        href: config.aliIconFont
       }
     ]
   },
@@ -68,9 +81,6 @@ module.exports = {
       lang: 'stylus'
     }
   ],
-  /**
-   * 把代码目录跟其他目录分离
-   */
   srcDir: 'src/',
   /*
    ** Build configuration
@@ -104,7 +114,6 @@ module.exports = {
   },
   router: {
     middleware: ['auth'],
-    // 部署到kong 才需要 context
     base: context
   },
   plugins: [
@@ -117,8 +126,5 @@ module.exports = {
   ],
   modules: ['@nuxtjs/axios'],
   axios,
-  proxy: {
-    '/security': securityApiServer,
-    '/pmsX-api': process.env.mode == 'dev' ? mockServer : apiServer
-  }
+  proxy: {...config.env[mode]}
 }

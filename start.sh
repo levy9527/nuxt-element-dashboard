@@ -46,6 +46,6 @@ docker run \
 -e CONTEXT=/ \
 -e HOST=0.0.0.0 \
 -e PORT=3333 \
--e mode=prod \
+-e MODE=prod \
 node:8.9.1 \
 sh -c "$_cmd"
