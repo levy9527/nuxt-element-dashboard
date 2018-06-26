@@ -39,7 +39,7 @@ docker run \
 --name $c_name \
 -v $PWD:/workdir \
 -w /workdir \
--e PROJECT_NO=82d9e6d75e4344fea177b42cd2bd7a44 \
+-e PROJECT_NO=0 \
 -e API_SERVER=http://119.29.28.59 \
 -e SECURITY_API_SERVER=http://119.29.28.59 \
 -e IS_PROXY=0 \
