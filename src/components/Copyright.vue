@@ -1,6 +1,6 @@
 <template>
   <div class="copyright">
-    Copyright © 2013 - {{new Date().getFullYear()}} 云徙科技有限公司 版权所有 | 粤ICP备13057902号-6
+    Copyright © 2018 - {{new Date().getFullYear()}} 滴普科技 版权所有
   </div>
 </template>
 
