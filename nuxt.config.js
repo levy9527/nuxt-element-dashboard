@@ -1,7 +1,6 @@
 const config = {
   projectNo: '',
   aliIconFont: '//at.alicdn.com/t/font_574145_ufxg504x3zorms4i.css',
-  baseUrl: process.env.API_SERVER || '', // 生产环境且不走代理会用到
   env: {
     mock: {
       '/api': 'http://yapi.demo.qunar.com/mock/9638',
@@ -34,7 +33,7 @@ if (process.env.IS_PROXY) {
 } else {
   axios = {
     proxy: false,
-    baseURL: config.baseUrl
+    baseURL: process.env.API_SERVER
   }
 }
 
