@@ -1,6 +1,6 @@
 let API_SERVER = 'http://119.29.28.59'
 const SECURITY_API_SERVER = 'http://119.29.28.59'
-const PROJECT_NO = '82d9e6d75e4344fea177b42cd2bd7a44'
+const PROJECT_NO = ''
 const ALI_ICON_FONT = '//at.alicdn.com/t/font_574145_ufxg504x3zorms4i.css' // 阿里iconfont
 
 let mockServer = 'http://yapi.demo.qunar.com/mock/9638'
