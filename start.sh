@@ -16,7 +16,7 @@
 #   NODE_ENV=prod ./docker-startup.sh 1
 #################################################################
 
-c_name=pyramid_dashboard
+c_name=dashboard
 
 docker rm -f $c_name &> /dev/null
 git pull
@@ -24,7 +24,7 @@ git pull
 # $1=1 表示需要 npm i
 #_cmd="npm run dev"
 #_cmd="npm run generate"
-_cmd="npm run build && npm start "
+_cmd="npm run build:docker && npm run start:docker"
 
 # $1=1 表示需要 npm i
 if [ "$1" = "1" ]; then
@@ -35,10 +35,17 @@ echo "$_cmd"
 
 docker run \
 -d \
--p 3333:3333 \
+-p 4333:3333 \
 --name $c_name \
 -v $PWD:/workdir \
 -w /workdir \
+-e PROJECT_NO=82d9e6d75e4344fea177b42cd2bd7a44 \
+-e API_SERVER=http://119.29.28.59 \
+-e SECURITY_API_SERVER=http://119.29.28.59 \
+-e IS_PROXY=0 \
+-e CONTEXT=/ \
+-e HOST=0.0.0.0 \
+-e PORT=3333 \
+-e mode=prod \
 node:8.9.1 \
 sh -c "$_cmd"
-

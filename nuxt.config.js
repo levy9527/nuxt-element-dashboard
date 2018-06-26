@@ -1,20 +1,34 @@
-let apiServer = 'http://114.67.159.3:8081'
-let securityServer = 'http://119.29.28.59'
+let API_SERVER = 'http://119.29.28.59'
+const SECURITY_API_SERVER = 'http://119.29.28.59'
+const PROJECT_NO = '82d9e6d75e4344fea177b42cd2bd7a44'
+const ALI_ICON_FONT = '//at.alicdn.com/t/font_574145_ufxg504x3zorms4i.css' // 阿里iconfont
+
 let mockServer = 'http://yapi.demo.qunar.com/mock/9638'
+let apiServer = process.env.API_SERVER || API_SERVER
+let securityApiServer = process.env.SECURITY_API_SERVER || SECURITY_API_SERVER
+let axios = {}
 
-let axios = {
-  proxy: true
-}
+let context =
+  process.env.CONTEXT && process.env.CONTEXT.length > 1
+    ? `/${process.env.CONTEXT}/`
+    : '/'
 
-// 生产部署放到kong后面不代理
-if (process.env.mode == 'prod') {
-  // axios = {
-  //   proxy: false,
-  //   baseURL: apiServer
-  // }
+// 部署放到kong后面不代理
+if (process.env.IS_PROXY) {
+  axios = {
+    proxy: true
+  }
+} else {
+  axios = {
+    proxy: false,
+    baseURL: apiServer
+  }
 }
 
 module.exports = {
+  env: {
+    PROJECT_NO: process.env.PROJECT_NO || PROJECT_NO
+  },
   /*
   ** Headers of the page
   */
@@ -30,26 +44,33 @@ module.exports = {
       }
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: context + 'favicon.ico'
+      },
       {
         rel: 'stylesheet',
         type: 'text/css',
-        href: '//at.alicdn.com/t/font_574145_ufxg504x3zorms4i.css'
+        href: ALI_ICON_FONT
       }
     ]
   },
   /*
-  ** Customize the progress bar color
-  */
-  loading: {color: '#1890ff'},
-  css: [{src: '~assets/global.styl', lang: 'stylus'}],
-  /**
-   * 把代码目录跟其他目录分离
+   ** Customize the progress bar color
    */
-  srcDir: 'src/',
+  loading: {
+    color: '#1890ff'
+  },
+  css: [
+    {
+      src: '~assets/global.styl',
+      lang: 'stylus'
+    }
+  ],
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     extractCSS: true,
     babel: {
@@ -64,8 +85,8 @@ module.exports = {
       ]
     },
     /*
-    ** Run ESLint on save
-    */
+     ** Run ESLint on save
+     */
     extend(config, {isDev}) {
       if (isDev && process.client) {
         config.module.rules.push({
@@ -79,13 +100,21 @@ module.exports = {
   },
   router: {
     middleware: ['auth'],
-    base: process.env.mode == 'prod' ? '/stonehenge/' : '/'
+    // 部署到kong 才需要 context
+    base: context
   },
-  plugins: [{src: '~/plugins/axios'}, {src: '~/plugins/element'}],
+  plugins: [
+    {
+      src: '~/plugins/axios'
+    },
+    {
+      src: '~/plugins/element'
+    }
+  ],
   modules: ['@nuxtjs/axios'],
   axios,
   proxy: {
-    '/security': process.env.mode == 'dev' ? mockServer : securityServer,
-    '/generator': process.env.mode == 'dev' ? mockServer : apiServer
+    '/security': securityApiServer,
+    '/pmsX-api': process.env.mode == 'dev' ? mockServer : apiServer
   }
 }

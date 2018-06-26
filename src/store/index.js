@@ -1,6 +1,5 @@
 // import {appTypeList, bizModelList} from '../const/api'
 import cookie from 'js-cookie'
-import {projectNo} from '@/const/api'
 
 // 最好提前在你的 store 中初始化好所有所需属性
 // https://vuex.vuejs.org/zh-cn/mutations.html
@@ -47,10 +46,7 @@ export const actions = {
     // console.log(context)
     let {commit, state, dispatch} = context
 
-    let resp = await this.$axios.$post(
-      `/security/api/v1/users/login?projectNo=${projectNo}`,
-      payload
-    )
+    let resp = await this.$axios.$post(`/security/api/v1/users/login`, payload)
     commit('login', resp.payload)
 
     dispatch('fetchUserAndMenuList', {userId: resp.payload.id})
