@@ -68,6 +68,10 @@ module.exports = {
       lang: 'stylus'
     }
   ],
+  /**
+   * 把代码目录跟其他目录分离
+   */
+  srcDir: 'src/',
   /*
    ** Build configuration
    */
