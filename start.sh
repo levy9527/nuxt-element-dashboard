@@ -32,7 +32,7 @@ if [ "$1" = "1" ]; then
 fi
 echo "$_cmd"
 
-# CONTEXT 默认为"/"。需要上下文时只需要写上下文的名字，如"dashboard"，而不是"/dashboard"
+# CONTEXT 默认值为0，表示没有上下文。需要上下文时只需要传上下文的名字，如"dashboard"，而不是路径(/dashboard)
 docker run \
 -d \
 -p 4333:3333 \
@@ -43,7 +43,7 @@ docker run \
 -e API_SERVER=http://119.29.28.59 \
 -e SECURITY_API_SERVER=http://119.29.28.59 \
 -e IS_PROXY=0 \
--e CONTEXT=/ \
+-e CONTEXT=0 \
 -e HOST=0.0.0.0 \
 -e PORT=3333 \
 -e MODE=prod \
