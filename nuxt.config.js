@@ -41,6 +41,11 @@ module.exports = {
   env: {
     PROJECT_NO: process.env.PROJECT_NO || config.projectNo
   },
+  proxy: {...config.env[mode]},
+  router: {
+    middleware: ['auth'],
+    base: context
+  },
   /*
   ** Headers of the page
   */
@@ -111,10 +116,6 @@ module.exports = {
       }
     }
   },
-  router: {
-    middleware: ['auth'],
-    base: context
-  },
   plugins: [
     {
       src: '~/plugins/axios'
@@ -124,6 +125,5 @@ module.exports = {
     }
   ],
   modules: ['@nuxtjs/axios'],
-  axios,
-  proxy: {...config.env[mode]}
+  axios
 }
