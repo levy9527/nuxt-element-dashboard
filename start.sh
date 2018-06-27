@@ -32,7 +32,7 @@ if [ "$1" = "1" ]; then
 fi
 echo "$_cmd"
 
-
+# CONTEXT 默认为"/"。需要上下文时只需要写上下文的名字，如"dashboard"，而不是"/dashboard"
 docker run \
 -d \
 -p 4333:3333 \
