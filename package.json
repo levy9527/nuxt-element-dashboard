@@ -20,7 +20,7 @@
   "dependencies": {
     "el-data-table": "*",
     "@nuxtjs/axios": "^5.0.1",
-    "el-form-renderer": "^1.0.2",
+    "el-form-renderer": "^1.1.0",
     "element-ui": "^2.2.0",
     "fecha": "^2.3.3",
     "file-saver": "^1.3.8",
