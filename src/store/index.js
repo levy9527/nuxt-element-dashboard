@@ -1,4 +1,3 @@
-// import {appTypeList, bizModelList} from '../const/api'
 import cookie from 'js-cookie'
 
 // 最好提前在你的 store 中初始化好所有所需属性
