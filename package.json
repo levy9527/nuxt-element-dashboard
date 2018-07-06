@@ -13,9 +13,7 @@
     "start:docker": "nuxt start",
     "generate": "cross-env MODE=prod nuxt generate",
     "deploy": "now --npm --public",
-    "precommit": "pretty-quick --staged",
-    "preinstall":
-      "npm config set puppeteer_download_host=https://npm.taobao.org/mirrors"
+    "precommit": "pretty-quick --staged"
   },
   "dependencies": {
     "el-data-table": "*",
