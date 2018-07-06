@@ -17,6 +17,11 @@
 #################################################################
 
 c_name=dashboard
+host_port=3333     # 根据情况修改 主机映射端口 host_port
+is_proxy=0         # is_proxy=0 表示使用网关, is_proxy=1 时使用node的代理
+context=0          # context 默认值为0，表示没有上下文。需要上下文时只需要传上下文的名字，如 dashboard
+api_server=http://deepexi.top  # 网关地址
+project_no=0
 
 docker rm -f $c_name &> /dev/null
 git pull
@@ -32,20 +37,18 @@ if [ "$1" = "1" ]; then
 fi
 echo "$_cmd"
 
-# CONTEXT 默认值为0，表示没有上下文。需要上下文时只需要传上下文的名字，如"dashboard"，而不是路径(/dashboard)
 docker run \
 -d \
--p 4333:3333 \
+-p $host_port:3000 \
 --name $c_name \
 -v $PWD:/workdir \
 -w /workdir \
--e PROJECT_NO=0 \
--e API_SERVER=http://119.29.28.59 \
--e SECURITY_API_SERVER=http://119.29.28.59 \
--e IS_PROXY=0 \
--e CONTEXT=0 \
+-e PROJECT_NO=$project_no \
+-e API_SERVER=$api_server \
+-e SECURITY_API_SERVER=$api_server \
+-e IS_PROXY=$is_proxy \
+-e CONTEXT=$context \
 -e HOST=0.0.0.0 \
--e PORT=3333 \
 -e MODE=prod \
 node:8.9.1 \
 sh -c "$_cmd"
