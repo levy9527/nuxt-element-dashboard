@@ -26,14 +26,11 @@ project_no=0
 docker rm -f $c_name &> /dev/null
 git pull
 
-# $1=1 表示需要 npm i
-#_cmd="npm run dev"
-#_cmd="npm run generate"
 _cmd="npm run build:docker && npm run start:docker"
 
-# $1=1 表示需要 npm i
+# $1=1 表示需要安装
 if [ "$1" = "1" ]; then
-    _cmd="npm i && ${_cmd}"
+    _cmd="yarn && ${_cmd}"
 fi
 echo "$_cmd"
 
