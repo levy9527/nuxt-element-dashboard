@@ -21,7 +21,6 @@
     "el-form-renderer": "^1.1.0",
     "element-ui": "^2.2.0",
     "fecha": "^2.3.3",
-    "file-saver": "^1.3.8",
     "js-cookie": "^2.2.0",
     "nuxt-edge": "^2.0.0-25428457.c59acdd",
     "stylus": "^0.54.5",
