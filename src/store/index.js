@@ -21,15 +21,18 @@ export const mutations = {
     state.token = payload.key
     state.userId = payload.id
 
-    cookie.set('token', payload.key)
-    cookie.set('userId', payload.id)
+    // 部署不一定是在根路径, 所以cookie要设置path
+    let path = this.$router.options.base
+    cookie.set('token', payload.key, {path})
+    cookie.set('userId', payload.id, {path})
   },
   logout(state) {
     state.token = ''
     state.userId = ''
 
-    cookie.remove('token')
-    cookie.remove('userId')
+    let path = this.$router.options.base
+    cookie.remove('token', {path})
+    cookie.remove('userId', {path})
   },
   update(state, payload) {
     Object.keys(payload).forEach(k => {
