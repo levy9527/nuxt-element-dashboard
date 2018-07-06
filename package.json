@@ -1,8 +1,14 @@
 {
   "name": "nuxt-element-dashboard",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Nuxt2 + element UI project",
-  "author": "levy <897895407@qq.com>",
+  "author": "levy <levy9527@qq.com>",
+  "license": "MIT",
+  "keywords": ["vue", "element-ui", "nuxt", "dashboard"],
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.2.0"
+  },
   "scripts": {
     "mock": "cross-env MODE=mock IS_PROXY=1 nuxt",
     "dev": "cross-env MODE=dev IS_PROXY=1 nuxt",
