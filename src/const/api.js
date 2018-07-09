@@ -1,1 +1,1 @@
-const baseApi = '/pyramid-api/api/v1'
+const baseApi = '/optimus-api/api/v1'

@@ -8,7 +8,7 @@
       <div class="logo">
         <nuxt-link to="/">
           <img class="logo-img" src="https://cn.vuejs.org/images/logo.png" alt="logo">
-          <h1 class="logo-text">Pyramid Dashboard</h1>
+          <h1 class="logo-text">Optimus Dashboard</h1>
         </nuxt-link>
       </div>
       <menu-item :menuList="menuList"></menu-item>

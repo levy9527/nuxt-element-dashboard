@@ -1,6 +1,6 @@
 <template>
   <div class="layout-login">
-    <h1 class="title">Pyramid Dashboard</h1>
+    <h1 class="title">Optimus Dashboard</h1>
     <nuxt></nuxt>
     <copyright></copyright>
   </div>
