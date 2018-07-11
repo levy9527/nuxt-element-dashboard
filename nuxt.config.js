@@ -1,5 +1,5 @@
 const config = {
-  projectNo: '',
+  projectNo: '070582f03ce2493e9e7311dccfc89f0c',
   aliIconFont: '//at.alicdn.com/t/font_574145_ufxg504x3zorms4i.css',
   env: {
     mock: {
