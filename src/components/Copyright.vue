@@ -1,6 +1,6 @@
 <template>
   <div class="copyright">
-    Copyright © 2018 - {{new Date().getFullYear()}} 滴普科技 版权所有
+    Copyright © {{new Date().getFullYear() + ' ' + $store.state.meta.copyright}}
   </div>
 </template>
 

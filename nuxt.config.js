@@ -43,7 +43,7 @@ module.exports = {
   },
   proxy: {...config.env[mode]},
   router: {
-    middleware: ['auth'],
+    middleware: ['meta', 'auth'],
     base: context
   },
   /*

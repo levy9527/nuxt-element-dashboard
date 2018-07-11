@@ -6,6 +6,7 @@ export const state = () => ({
   // 这两个用于client side的使用, 又放cookie里是为了ssr时状态不丢失
   userId: '',
   token: '',
+  meta: {},
 
   user: {},
   menuList: [],
@@ -71,5 +72,12 @@ export const actions = {
       menuList: menuResources.payload.menu,
       permission: menuResources.payload.permission
     })
+  },
+  // 配置的元信息
+  async fetchMetaInfo({commit}, {projectNo}) {
+    let resp = await this.$axios.$get(
+      'http://yapi.demo.qunar.com/mock/13767/optimus/meta'
+    )
+    commit('update', {meta: resp})
   }
 }

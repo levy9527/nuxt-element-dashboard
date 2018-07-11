@@ -1,6 +1,6 @@
 <template>
-  <div class="layout-login">
-    <h1 class="title">Optimus Dashboard</h1>
+  <div class="layout-login" :style="{backgroundImage: 'url(' + $store.state.meta.loginBgImg +')'}" >
+    <h1 class="title">{{$store.state.meta.appName}}</h1>
     <nuxt></nuxt>
     <copyright></copyright>
   </div>
