@@ -18,7 +18,7 @@
       <el-header>
         <el-row type="flex" justify="space-between" align="middle">
           <el-col>
-            <el-button @click="collapse = !collapse">折叠</el-button>
+            <el-button @click="collapse = !collapse"><i class="el-icon-sort"></i></el-button>
           </el-col>
           <el-col style="text-align: right">
             <el-dropdown @command="handleDropdown">
@@ -75,6 +75,10 @@ export default {
 
 <style lang="stylus">
 #__nuxt {
+
+.el-icon-sort {
+  transform: rotate(-90deg)
+}
 
 // aside-menu
 .logo {
