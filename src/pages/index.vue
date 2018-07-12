@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <img class="hello-img" :src="$store.state.meta.homePageImg" alt="homeImg">
+    <img class="home-img" :src="$store.state.meta.homePageImg" alt="homeImg">
   </div>
   <!--<div class="index">-->
     <!--<h2>data-table generator</h2>-->
@@ -211,7 +211,7 @@ export default {
 </script>
 <style lang="stylus">
   .index {
-    .hello-img {
+    .home-img {
       width 100%
     }
   }
