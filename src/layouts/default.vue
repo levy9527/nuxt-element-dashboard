@@ -50,6 +50,7 @@
 import Copyright from '../components/Copyright.vue'
 import MenuItem from '../components/MenuItem.vue'
 import {mapState} from 'vuex'
+import cookie from 'js-cookie'
 
 export default {
   components: {
@@ -59,6 +60,33 @@ export default {
   data() {
     return {
       collapse: false
+    }
+  },
+  async created() {
+    let token = cookie.get('token')
+    let userId = cookie.get('userId')
+
+    // 未登录
+    if (!userId || !token) {
+      this.$router.replace('/login')
+    }
+    // 已登录但因为刷新, 状态丢失
+    else if (!this.$store.state.userId) {
+      this.$store.commit('update', {
+        token,
+        userId
+      })
+
+      try {
+        await this.$store.dispatch('fetchUserAndMenuList', {userId})
+      } catch (e) {
+        let path = this.$router.path
+        cookie.remove('token', {path})
+        cookie.remove('userId', {path})
+
+        console.error('auth error: ', e)
+        this.$router.replace('/login')
+      }
     }
   },
   methods: {

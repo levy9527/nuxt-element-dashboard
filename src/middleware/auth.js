@@ -1,5 +1,6 @@
 /**
  * Created by levy on 2018/2/24.
+ * @deprecated 改为静态化部署后, 不再使用它
  */
 
 export default async function(context) {

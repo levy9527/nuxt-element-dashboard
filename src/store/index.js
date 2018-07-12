@@ -3,7 +3,7 @@ import cookie from 'js-cookie'
 // 最好提前在你的 store 中初始化好所有所需属性
 // https://vuex.vuejs.org/zh-cn/mutations.html
 export const state = () => ({
-  // 这两个用于client side的使用, 又放cookie里是为了ssr时状态不丢失
+  // 这两个用于client side的使用, 又放cookie里是为了刷新时状态不丢失
   userId: '',
   token: '',
   meta: {},
