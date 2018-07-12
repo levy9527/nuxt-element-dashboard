@@ -20,13 +20,11 @@ import {
   Select,
   Option,
   DatePicker,
-  Switch,
   Tooltip,
   Container,
   Main,
   Footer,
   Header,
-  Aside,
   Menu,
   Submenu,
   MenuItem,
@@ -35,12 +33,8 @@ import {
   DropdownItem,
   Row,
   Col,
-  Steps,
-  Step,
-  Cascader,
   Tabs,
-  TabPane,
-  Autocomplete
+  TabPane
 } from 'element-ui'
 import ElFormRenderer from 'el-form-renderer'
 import ElDataTable from 'el-data-table'
@@ -64,7 +58,7 @@ Vue.use(Container)
 Vue.use(Main)
 Vue.use(Footer)
 Vue.use(Header)
-Vue.use(Aside)
+// Vue.use(Aside)
 Vue.use(Dropdown)
 Vue.use(DropdownMenu)
 Vue.use(DropdownItem)
@@ -72,18 +66,18 @@ Vue.use(Row)
 Vue.use(Col)
 Vue.use(Radio)
 Vue.use(Checkbox)
-Vue.use(Switch)
+// Vue.use(Switch)
 Vue.use(Loading.directive)
 Vue.use(Dialog)
 Vue.use(Tooltip)
-Vue.use(Cascader)
+// Vue.use(Cascader)
 Vue.use(Tabs)
 Vue.use(TabPane)
-Vue.use(Autocomplete)
+// Vue.use(Autocomplete)
 
 // steps
-Vue.use(Steps)
-Vue.use(Step)
+// Vue.use(Steps)
+// Vue.use(Step)
 
 Vue.component('el-form-renderer', ElFormRenderer)
 Vue.component('el-data-table', ElDataTable)
@@ -96,5 +90,3 @@ Vue.prototype.$alert = MessageBox.alert
 Vue.prototype.$confirm = MessageBox.confirm
 Vue.prototype.$prompt = MessageBox.prompt
 Vue.prototype.$message = Message
-
-Vue.prototype.$log = console.log.bind(console)
