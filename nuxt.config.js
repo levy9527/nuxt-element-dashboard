@@ -38,6 +38,7 @@ if (process.env.IS_PROXY) {
 }
 
 module.exports = {
+  mode: 'spa',
   env: {
     PROJECT_NO: process.env.PROJECT_NO || config.projectNo
   },
