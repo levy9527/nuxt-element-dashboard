@@ -4,17 +4,18 @@
 
 ```bash
 # install dependencies
-$ npm install # Or yarn install
+$ yarn
 
 # serve with hot reload at localhost:3000
 # using mock api
-$ npm run dev
+$ yarn mock
 
 # using backend api
-$ npm run test
+$ yarn dev
 
 # build for production and launch server
-$ npm run build && npm start
+$ yarn build
+$ yarn start
 ```
 
 ## deploy
@@ -46,6 +47,11 @@ $ npm run deploy
 ```
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+
+### projectNo
+
+you can add a project in [usercenter](http://gateway.deepexi.top/cp-web/)
+and custom project config. then add projectNo in nuxt.config.js.
 
 ## 测试
 
