@@ -5,7 +5,11 @@ export default async function({store, app}) {
   // if (process.server) return
 
   if (!store.state.meta.appName) {
-    await store.dispatch('fetchMetaInfo', {projectNo: process.env.PROJECT_NO})
+    try {
+      await store.dispatch('fetchMetaInfo', {projectNo: process.env.PROJECT_NO})
+    } catch (e) {
+      console.log('meta error: ', e)
+    }
 
     let meta = store.state.meta
     let head = app.head

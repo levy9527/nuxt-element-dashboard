@@ -75,9 +75,11 @@ export const actions = {
   },
   // 配置的元信息
   async fetchMetaInfo({commit}, {projectNo}) {
-    let resp = await this.$axios.$get(
-      'http://yapi.demo.qunar.com/mock/13767/optimus/meta'
-    )
-    commit('update', {meta: resp})
+    let resp = await this.$axios.$get('/security/api/v1/configs')
+    let formattedObj = {}
+    resp.payload.forEach(item => {
+      formattedObj[item.key] = item.value
+    })
+    commit('update', {meta: formattedObj})
   }
 }
