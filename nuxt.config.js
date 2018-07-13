@@ -1,14 +1,14 @@
 const config = {
-  projectNo: '070582f03ce2493e9e7311dccfc89f0c',
+  projectNo: '',
   aliIconFont: '//at.alicdn.com/t/font_574145_ufxg504x3zorms4i.css',
   env: {
     mock: {
       '/api': 'http://yapi.demo.qunar.com/mock/9638',
-      '/security': 'http://119.29.28.59'
+      '/security': 'http://111.231.236.219'
     },
     dev: {
       '/api': 'http://119.29.28.59',
-      '/security': 'http://119.29.28.59'
+      '/security': 'http://111.231.236.219'
     },
     prod: {
       // 生产环境，docker传参
