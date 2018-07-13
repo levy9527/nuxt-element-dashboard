@@ -76,10 +76,10 @@ export const actions = {
   // 配置的元信息
   async fetchMetaInfo({commit}, {projectNo}) {
     let resp = await this.$axios.$get('/security/api/v1/configs')
-    let formattedObj = {}
+    let meta = {}
     resp.payload.forEach(item => {
-      formattedObj[item.key] = item.value
+      meta[item.key] = item.value
     })
-    commit('update', {meta: formattedObj})
+    commit('update', {meta})
   }
 }
