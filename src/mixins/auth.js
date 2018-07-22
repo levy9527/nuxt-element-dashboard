@@ -6,6 +6,8 @@ import cookie from 'js-cookie'
 // 客户端鉴权
 export default {
   async created() {
+    if (process.env.NO_LOGIN > 0) return
+
     let token = cookie.get('token')
     let userId = cookie.get('userId')
 

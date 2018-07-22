@@ -4,8 +4,9 @@
  */
 
 export default async function(context) {
+  if (process.env.NO_LOGIN > 0) return
+
   let {store, route, redirect, req} = context
-  // console.log('auth', context)
 
   // https://stackoverflow.com/questions/10730362/get-cookie-by-name
   const getCookie = function(cookie, name) {
