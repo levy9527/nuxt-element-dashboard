@@ -1,7 +1,8 @@
 import Vue from 'vue'
+import cookie from 'js-cookie'
 
 export default function(context) {
-  let {$axios, store, redirect} = context
+  let {$axios, store, app, redirect} = context
 
   $axios.onRequest(config => {
     let url = config.url
@@ -30,7 +31,12 @@ export default function(context) {
         message: data.payload || data.msg
       })
 
-      if (resp.status == 401) redirect('/login')
+      if (resp.status == 401) {
+        let path = app.router.options.base
+        cookie.remove('token', {path})
+        cookie.remove('userId', {path})
+        redirect('/login')
+      }
     }
     // TODO asyncData 的错误 需要日志监控
     else console.log('error', error)

@@ -25,7 +25,7 @@ export default {
       try {
         await this.$store.dispatch('fetchUserAndMenuList', {userId})
       } catch (e) {
-        let path = this.$router.path
+        let path = this.$router.options.base
         cookie.remove('token', {path})
         cookie.remove('userId', {path})
 
