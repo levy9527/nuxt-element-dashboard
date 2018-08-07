@@ -3,7 +3,7 @@
     <el-menu :collapse="collapse" class="aside-menu"
              :default-active="$route.path" router
              background-color="#001529"
-             text-color="#FFFFFFA6"
+             text-color="hsla(0,0%,100%,.67)"
     >
       <div class="logo">
         <nuxt-link to="/">
