@@ -10,6 +10,9 @@ $ yarn
 # using mock api
 $ yarn mock
 
+# 启动mock环境，使用mock接口开发，不需要登录
+$ yarn mock:nologin
+
 # using backend api
 $ yarn dev
 
