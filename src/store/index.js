@@ -10,9 +10,7 @@ export const state = () => ({
 
   user: {},
   menuList: [],
-  permission: {},
-  appTypeList: [],
-  bizModelList: []
+  permission: {}
 })
 
 //  mutation 必须同步执行
