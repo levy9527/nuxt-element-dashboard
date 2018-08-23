@@ -26,7 +26,7 @@ let context =
     ? `/${process.env.CONTEXT}/`
     : '/'
 
-if (process.env.IS_PROXY) {
+if (process.env.IS_PROXY > 0) {
   axios = {
     proxy: true
   }
