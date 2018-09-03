@@ -9,11 +9,6 @@ const config = {
     dev: {
       '/api': 'http://119.29.28.59',
       '/security': 'http://111.231.236.219'
-    },
-    prod: {
-      // 生产环境，docker传参
-      '/api': process.env.API_SERVER,
-      '/security': process.env.SECURITY_API_SERVER
     }
   }
 }
@@ -70,9 +65,9 @@ module.exports = {
         href: context + 'favicon.ico'
       },
       {
-        rel: 'stylesheet',
-        type: 'text/css',
-        href: config.aliIconFont
+        // rel: 'stylesheet',
+        // type: 'text/css',
+        // href: config.aliIconFont
       }
     ]
   },
