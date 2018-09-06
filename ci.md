@@ -4,7 +4,7 @@
 * vi .env
 
   API_SERVER=http://portal.deepexi.top
-  CONTEXT=moby-platform-dashboard
+  PUBLIC_PATH=http://cdn.deepexi.com/
   PROJECT_NO=321af7ccb5314f52b6f6cb9090af664c
 
 * 安装 node.js(已安装跳过)
