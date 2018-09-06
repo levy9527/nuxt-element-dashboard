@@ -41,7 +41,7 @@ module.exports = {
     PROJECT_NO: config.projectNo,
     NO_LOGIN: process.env.NO_LOGIN
   },
-  proxy: {...config.env[env.MODE]},
+  proxy: config.env[env.MODE],
   router: {
     middleware: ['meta'],
     mode: 'hash'
