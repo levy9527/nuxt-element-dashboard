@@ -1,6 +1,16 @@
+const env = process.env
+const isProd = env.MODE == 'prod'
+
+if (isProd) {
+  require('dotenv').config()
+}
+
+let apiServer = process.env.API_SERVER || 'http://portal.deepexi.top'
+let publicPath = process.env.PUBLIC_PATH || 'http://cdn.deepexi.com/'
+
 const config = {
-  projectNo: '',
-  aliIconFont: '//at.alicdn.com/t/font_574145_ufxg504x3zorms4i.css',
+  projectNo: env.PROJECT_NO || '',
+  aliIconFont: '',
   env: {
     mock: {
       '/api': 'http://yapi.demo.qunar.com/mock/9638',
@@ -13,81 +23,34 @@ const config = {
   }
 }
 
-const mode = process.env.MODE
-let axios = {}
+let axios = {
+  proxy: true
+}
 
-let context =
-  process.env.CONTEXT && process.env.CONTEXT.length > 1
-    ? `/${process.env.CONTEXT}/`
-    : '/'
-
-if (process.env.IS_PROXY > 0) {
-  axios = {
-    proxy: true
-  }
-} else {
+// 生产部署放到网关后面不代理
+if (isProd) {
   axios = {
     proxy: false,
-    baseURL: process.env.API_SERVER
+    baseURL: apiServer
   }
 }
 
 module.exports = {
   mode: 'spa',
   env: {
-    PROJECT_NO: process.env.PROJECT_NO || config.projectNo,
+    PROJECT_NO: config.projectNo,
     NO_LOGIN: process.env.NO_LOGIN
   },
-  proxy: {...config.env[mode]},
+  proxy: {...config.env[env.MODE]},
   router: {
     middleware: ['meta'],
-    base: context
+    mode: 'hash'
   },
-  /*
-  ** Headers of the page
-  */
-  head: {
-    title: 'Optimus',
-    meta: [
-      {charset: 'utf-8'},
-      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-      {'http-equiv': 'x-ua-compatible', content: 'IE=edge, chrome=1'},
-      {
-        hid: 'description',
-        name: 'description',
-        content: '开发平台'
-      }
-    ],
-    link: [
-      {
-        rel: 'icon',
-        type: 'image/x-icon',
-        href: context + 'favicon.ico'
-      },
-      {
-        // rel: 'stylesheet',
-        // type: 'text/css',
-        // href: config.aliIconFont
-      }
-    ]
-  },
-  /*
-   ** Customize the progress bar color
-   */
-  loading: {
-    color: '#1890ff'
-  },
-  css: [
-    {
-      src: '~assets/global.styl',
-      lang: 'stylus'
-    }
-  ],
-  srcDir: 'src/',
   /*
    ** Build configuration
    */
   build: {
+    publicPath,
     extractCSS: true,
     babel: {
       plugins: [
@@ -114,6 +77,47 @@ module.exports = {
       }
     }
   },
+  /*
+  ** Headers of the page
+  */
+  head: {
+    title: 'Optimus',
+    meta: [
+      {charset: 'utf-8'},
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      {'http-equiv': 'x-ua-compatible', content: 'IE=edge, chrome=1'},
+      {
+        hid: 'description',
+        name: 'description',
+        content: '开发平台'
+      }
+    ],
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: 'favicon.ico'
+      },
+      {
+        // rel: 'stylesheet',
+        // type: 'text/css',
+        // href: config.aliIconFont
+      }
+    ]
+  },
+  /*
+   ** Customize the progress bar color
+   */
+  loading: {
+    color: '#1890ff'
+  },
+  css: [
+    {
+      src: '~assets/global.styl',
+      lang: 'stylus'
+    }
+  ],
+  srcDir: 'src/',
   plugins: [
     {
       src: '~/plugins/axios'

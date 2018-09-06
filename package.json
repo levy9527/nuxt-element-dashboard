@@ -26,6 +26,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.0.1",
     "dayjs": "^1.7.4",
+    "dotenv": "^6.0.0",
     "el-data-table": "^0.4.1",
     "el-form-renderer": "^1.1.0",
     "element-ui": "^2.4.3",
