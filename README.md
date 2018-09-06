@@ -18,35 +18,12 @@ $ yarn dev
 
 # build for production and launch server
 $ yarn build
-$ yarn start
 ```
 
 ## deploy
 
-support node/docker/now
-
-### node
-
-run nodejs in your server
-
-```bash
-$ ./nohup.sh
-```
-
-### docker
-
-run docker in your server
-
 ```bash
 $ ./start.sh
-```
-
-### now
-
-deploy to now
-
-```bash
-$ npm run deploy
 ```
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
