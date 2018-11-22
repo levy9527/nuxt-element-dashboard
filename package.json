@@ -27,7 +27,7 @@
     "dotenv": "^6.0.0",
     "el-data-table": "^0.13.0",
     "el-form-renderer": "^1.1.1",
-    "element-ui": "^2.4.3",
+    "element-ui": "^2.4.11",
     "js-cookie": "^2.2.0",
     "nuxt-edge": "^2.0.0-25428457.c59acdd",
     "stylus": "^0.54.5",
