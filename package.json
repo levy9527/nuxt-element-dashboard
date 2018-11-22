@@ -13,7 +13,6 @@
     "dev": "cross-env MODE=dev IS_PROXY=1 nuxt",
     "mock:nologin": "cross-env MODE=mock IS_PROXY=1 NO_LOGIN=1 nuxt",
     "dev:nologin": "cross-env MODE=dev IS_PROXY=1 NO_LOGIN=1 nuxt",
-    "test:e2e": "nuxt-puppeteer-jest",
     "build": "cross-env MODE=prod nuxt build",
     "build:docker": "nuxt build",
     "start": "cross-env HOST=0.0.0.0 PORT=3333 MODE=prod nuxt start",
