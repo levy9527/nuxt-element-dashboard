@@ -32,9 +32,7 @@ import {
   DropdownMenu,
   DropdownItem,
   Row,
-  Col,
-  Tabs,
-  TabPane
+  Col
 } from 'element-ui'
 import ElFormRenderer from 'el-form-renderer'
 import ElDataTable from 'el-data-table'
@@ -71,8 +69,6 @@ Vue.use(Loading.directive)
 Vue.use(Dialog)
 Vue.use(Tooltip)
 // Vue.use(Cascader)
-Vue.use(Tabs)
-Vue.use(TabPane)
 // Vue.use(Autocomplete)
 
 // steps
