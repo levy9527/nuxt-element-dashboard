@@ -24,12 +24,6 @@ $ yarn dev
 $ yarn build
 ```
 
-## deploy
-
-```bash
-$ ./start.sh
-```
-
 ## code style
 
 when you npm i or yarn, prettier has already installed
