@@ -1,9 +1,7 @@
+require('dotenv').config()
+
 const env = process.env
 const isProd = env.MODE == 'prod'
-
-if (isProd) {
-  require('dotenv').config()
-}
 
 let apiServer = process.env.API_SERVER || 'http://portal.deepexi.top'
 let publicPath = process.env.PUBLIC_PATH || 'http://cdn.deepexi.com/'
