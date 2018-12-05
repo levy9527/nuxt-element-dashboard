@@ -14,7 +14,7 @@ const config = {
       '/security': 'http://yapi.demo.qunar.com/mock/9638'
     },
     dev: {
-      '/security': 'your.dev.server'
+      '/security': 'http://your.dev.server'
     }
   }
 }
