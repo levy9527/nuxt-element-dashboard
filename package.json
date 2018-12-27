@@ -4,7 +4,12 @@
   "description": "Nuxt2 + element UI project",
   "author": "levy <levy9527@qq.com>",
   "license": "MIT",
-  "keywords": ["vue", "element-ui", "nuxt", "dashboard"],
+  "keywords": [
+    "vue",
+    "element-ui",
+    "nuxt",
+    "dashboard"
+  ],
   "engines": {
     "npm": ">= 5.2.0"
   },
@@ -42,7 +47,7 @@
     "eslint-loader": "^1.7.1",
     "eslint-plugin-vue": "^4.0.0",
     "husky": "^0.14.3",
-    "prettier": "1.12.1",
+    "prettier": "^1.15.3",
     "pretty-quick": "^1.4.1"
   }
 }
