@@ -1,61 +1,61 @@
 <template>
   <div class="index">
-    <img class="home-img" :src="$store.state.meta.homePageImg" alt="homeImg">
+    <img class="home-img" :src="$store.state.meta.homePageImg" alt="homeImg" />
   </div>
   <!--<div class="index">-->
-    <!--<h2>data-table generator</h2>-->
-    <!--<el-form-renderer :content="renderInput" ref="renderInput"></el-form-renderer>-->
-    <!--<el-form-renderer :content="renderCheckbox" ref="renderCheckbox"></el-form-renderer>-->
-    <!--<div>columns</div>-->
-    <!--<el-form inline>-->
-      <!--<div v-for="(col, index) in columns" :key="index">-->
-        <!--<el-form-item label="列名">-->
-          <!--<el-input v-model.trim="col.label"></el-input>-->
-        <!--</el-form-item>-->
-        <!--<el-form-item label="字段值">-->
-          <!--<el-input v-model.trim="col.prop"></el-input>-->
-        <!--</el-form-item>-->
-      <!--</div>-->
-      <!--<el-form-item label="">-->
-        <!--<el-button @click="addColumn">添加列</el-button>-->
-      <!--</el-form-item>-->
-    <!--</el-form>-->
-    <!--<div>extraButtons</div>-->
-    <!--<el-form inline>-->
-      <!--<div v-for="(btn, index) in extraButtons" :key="index">-->
-        <!--&lt;!&ndash;<el-form-item label="类型">&ndash;&gt;-->
-          <!--&lt;!&ndash;<el-input v-model.trim="btn.type"></el-input>&ndash;&gt;-->
-        <!--&lt;!&ndash;</el-form-item>&ndash;&gt;-->
-        <!--<el-form-item label="text">-->
-          <!--<el-input v-model.trim="btn.text"></el-input>-->
-        <!--</el-form-item>-->
-        <!--<el-form-item label="@click">-->
-          <!--<el-input v-model.trim="btn.onClick"></el-input>-->
-        <!--</el-form-item>-->
-      <!--</div>-->
-      <!--<el-form-item label="">-->
-        <!--<el-button @click="addBtn">添加按钮</el-button>-->
-      <!--</el-form-item>-->
-    <!--</el-form>-->
-    <!--<div>查询字段</div>-->
-    <!--<el-form inline>-->
-      <!--<div v-for="(search, index) in searchForm" :key="index">-->
-        <!--<el-form-item label="label">-->
-          <!--<el-input v-model.trim="search.label"></el-input>-->
-        <!--</el-form-item>-->
-        <!--<el-form-item label="value">-->
-          <!--<el-input v-model.trim="search.$id"></el-input>-->
-        <!--</el-form-item>-->
-      <!--</div>-->
-      <!--<el-form-item label="">-->
-        <!--<el-button @click="addSearch">添加查询</el-button>-->
-      <!--</el-form-item>-->
-    <!--</el-form>-->
-    <!--<el-form>-->
-      <!--<el-form-item label="">-->
-        <!--<el-button @click="generate" type="primary">生成</el-button>-->
-      <!--</el-form-item>-->
-    <!--</el-form>-->
+  <!--<h2>data-table generator</h2>-->
+  <!--<el-form-renderer :content="renderInput" ref="renderInput"></el-form-renderer>-->
+  <!--<el-form-renderer :content="renderCheckbox" ref="renderCheckbox"></el-form-renderer>-->
+  <!--<div>columns</div>-->
+  <!--<el-form inline>-->
+  <!--<div v-for="(col, index) in columns" :key="index">-->
+  <!--<el-form-item label="列名">-->
+  <!--<el-input v-model.trim="col.label"></el-input>-->
+  <!--</el-form-item>-->
+  <!--<el-form-item label="字段值">-->
+  <!--<el-input v-model.trim="col.prop"></el-input>-->
+  <!--</el-form-item>-->
+  <!--</div>-->
+  <!--<el-form-item label="">-->
+  <!--<el-button @click="addColumn">添加列</el-button>-->
+  <!--</el-form-item>-->
+  <!--</el-form>-->
+  <!--<div>extraButtons</div>-->
+  <!--<el-form inline>-->
+  <!--<div v-for="(btn, index) in extraButtons" :key="index">-->
+  <!--&lt;!&ndash;<el-form-item label="类型">&ndash;&gt;-->
+  <!--&lt;!&ndash;<el-input v-model.trim="btn.type"></el-input>&ndash;&gt;-->
+  <!--&lt;!&ndash;</el-form-item>&ndash;&gt;-->
+  <!--<el-form-item label="text">-->
+  <!--<el-input v-model.trim="btn.text"></el-input>-->
+  <!--</el-form-item>-->
+  <!--<el-form-item label="@click">-->
+  <!--<el-input v-model.trim="btn.onClick"></el-input>-->
+  <!--</el-form-item>-->
+  <!--</div>-->
+  <!--<el-form-item label="">-->
+  <!--<el-button @click="addBtn">添加按钮</el-button>-->
+  <!--</el-form-item>-->
+  <!--</el-form>-->
+  <!--<div>查询字段</div>-->
+  <!--<el-form inline>-->
+  <!--<div v-for="(search, index) in searchForm" :key="index">-->
+  <!--<el-form-item label="label">-->
+  <!--<el-input v-model.trim="search.label"></el-input>-->
+  <!--</el-form-item>-->
+  <!--<el-form-item label="value">-->
+  <!--<el-input v-model.trim="search.$id"></el-input>-->
+  <!--</el-form-item>-->
+  <!--</div>-->
+  <!--<el-form-item label="">-->
+  <!--<el-button @click="addSearch">添加查询</el-button>-->
+  <!--</el-form-item>-->
+  <!--</el-form>-->
+  <!--<el-form>-->
+  <!--<el-form-item label="">-->
+  <!--<el-button @click="generate" type="primary">生成</el-button>-->
+  <!--</el-form-item>-->
+  <!--</el-form>-->
   <!--</div>-->
 </template>
 
@@ -210,9 +210,9 @@ export default {
 }
 </script>
 <style lang="stylus">
-  .index {
-    .home-img {
-      width 100%
-    }
+.index {
+  .home-img {
+    width 100%
   }
+}
 </style>

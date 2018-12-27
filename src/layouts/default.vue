@@ -1,14 +1,17 @@
 <template>
   <el-container style="background: #f0f2f5;">
-    <el-menu :collapse="collapse" class="aside-menu"
-             :default-active="$route.path" router
-             background-color="#001529"
-             text-color="hsla(0,0%,100%,.67)"
+    <el-menu
+      :collapse="collapse"
+      class="aside-menu"
+      :default-active="$route.path"
+      router
+      background-color="#001529"
+      text-color="hsla(0,0%,100%,.67)"
     >
       <div class="logo">
         <nuxt-link to="/">
-          <img class="logo-img" :src="$store.state.meta.logo" alt="logo">
-          <h1 class="logo-text">{{$store.state.meta.appName}}</h1>
+          <img class="logo-img" :src="$store.state.meta.logo" alt="logo" />
+          <h1 class="logo-text">{{ $store.state.meta.appName }}</h1>
         </nuxt-link>
       </div>
       <menu-item :menuList="menuList"></menu-item>
@@ -18,15 +21,17 @@
       <el-header>
         <el-row type="flex" justify="space-between" align="middle">
           <el-col>
-            <el-button @click="collapse = !collapse"><i class="el-icon-sort"></i></el-button>
+            <el-button @click="collapse = !collapse"
+              ><i class="el-icon-sort"></i
+            ></el-button>
           </el-col>
           <el-col style="text-align: right">
             <el-dropdown @command="handleDropdown">
-            <span class="el-dropdown-link">
-              {{$store.state.user.fullname}}
-              <i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-              <el-dropdown-menu slot="dropdown" >
+              <span class="el-dropdown-link">
+                {{ $store.state.user.fullname }}
+                <i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="logout">退出</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
@@ -34,14 +39,9 @@
         </el-row>
       </el-header>
 
-      <el-main class="nuxt-main">
-        <nuxt></nuxt>
-      </el-main>
+      <el-main class="nuxt-main"> <nuxt></nuxt> </el-main>
 
-      <el-footer >
-        <copyright></copyright>
-      </el-footer>
-
+      <el-footer> <copyright></copyright> </el-footer>
     </el-container>
   </el-container>
 </template>

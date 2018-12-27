@@ -1,8 +1,14 @@
 <template>
   <div class="route-tab">
     <el-tabs v-model="active" v-bind="tab" @tab-click="onClick">
-      <el-tab-pane v-for="(route) in routes" :key="route.path" :label="route.name" :name="route.path"
-                   :disabled="route.disabled" :closable="route.closable">
+      <el-tab-pane
+        v-for="route in routes"
+        :key="route.path"
+        :label="route.name"
+        :name="route.path"
+        :disabled="route.disabled"
+        :closable="route.closable"
+      >
         <slot v-if="route.path === $route.path"></slot>
       </el-tab-pane>
     </el-tabs>
@@ -55,9 +61,9 @@ export default {
 }
 </script>
 <style lang="stylus">
-  .route-tab {
-    .el-tabs__header.is-top {
-      margin-bottom 40px
-    }
+.route-tab {
+  .el-tabs__header.is-top {
+    margin-bottom 40px
   }
+}
 </style>

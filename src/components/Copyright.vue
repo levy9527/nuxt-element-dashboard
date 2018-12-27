@@ -1,6 +1,7 @@
 <template>
   <div class="copyright">
-    Copyright © {{new Date().getFullYear() + ' ' + $store.state.meta.copyright}}
+    Copyright ©
+    {{ new Date().getFullYear() + ' ' + $store.state.meta.copyright }}
   </div>
 </template>
 
