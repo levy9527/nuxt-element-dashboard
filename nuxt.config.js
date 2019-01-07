@@ -74,8 +74,8 @@ module.exports = {
     }
   },
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     title: 'Optimus',
     meta: [
@@ -92,7 +92,8 @@ module.exports = {
       {
         rel: 'icon',
         type: 'image/x-icon',
-        href: 'favicon.ico'
+        href:
+          'https://deepexi.oss-cn-shenzhen.aliyuncs.com/deepexi-services/favicon32x32.png'
       },
       {
         // rel: 'stylesheet',
