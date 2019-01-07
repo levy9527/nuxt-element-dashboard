@@ -3,7 +3,9 @@ require('dotenv').config()
 const env = process.env
 const isProd = env.MODE == 'prod'
 
-let apiServer = process.env.API_SERVER || 'http://portal.deepexi.top'
+// 不能以斜杠结尾
+let apiServer = process.env.API_SERVER
+// 必须以斜杠结尾
 let publicPath = process.env.PUBLIC_PATH || 'http://cdn.deepexi.com/'
 
 const config = {
@@ -23,8 +25,8 @@ let axios = {
   proxy: true
 }
 
-// 生产部署放到网关后面不代理
-if (isProd) {
+// 如果指定apiServer, 则使用绝对路径请求api
+if (apiServer) {
   axios = {
     proxy: false,
     baseURL: apiServer
