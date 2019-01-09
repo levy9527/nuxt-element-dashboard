@@ -9,7 +9,7 @@ let apiServer = process.env.API_SERVER
 let publicPath = process.env.PUBLIC_PATH || 'http://cdn.deepexi.com/'
 
 const config = {
-  projectNo: env.PROJECT_NO || '',
+  projectNo: env.PROJECT_NO,
   aliIconFont: '',
   env: {
     mock: {
@@ -25,8 +25,8 @@ let axios = {
   proxy: true
 }
 
-// 如果指定apiServer, 则使用绝对路径请求api
-if (apiServer) {
+// 如果生产指定apiServer, 则使用绝对路径请求api
+if (isProd && apiServer) {
   axios = {
     proxy: false,
     baseURL: apiServer
