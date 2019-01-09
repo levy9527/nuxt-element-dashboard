@@ -15,7 +15,7 @@
   },
   "scripts": {
     "mock": "cross-env MODE=mock nuxt",
-    "dev": "cross-env MODE=dev  nuxt",
+    "dev": "cross-env MODE=dev nuxt",
     "mock:nologin": "cross-env MODE=mock NO_LOGIN=1 nuxt",
     "dev:nologin": "cross-env MODE=dev NO_LOGIN=1 nuxt",
     "build": "cross-env MODE=prod nuxt build",
