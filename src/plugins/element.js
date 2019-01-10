@@ -34,7 +34,7 @@ import {
   Row,
   Col
 } from 'element-ui'
-import ElFormRenderer from 'el-form-renderer'
+import ElFormRenderer from '@femessage/el-form-renderer'
 import ElDataTable from 'el-data-table'
 
 Vue.prototype.$ELEMENT = {size: 'medium'}
