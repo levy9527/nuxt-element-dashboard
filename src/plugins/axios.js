@@ -10,11 +10,6 @@ export default function(context) {
     url += url.indexOf('?') > -1 ? '&' : '?'
     url += `token=${store.state.token}`
 
-    // 调用用户中心的接口需要加上projectNo
-    if (url.indexOf('/security/') > -1) {
-      url += `&projectNo=${process.env.PROJECT_NO}`
-    }
-
     config.url = url
 
     return config

@@ -9,7 +9,6 @@ let apiServer = process.env.API_SERVER
 let publicPath = process.env.PUBLIC_PATH || 'http://cdn.deepexi.com/'
 
 const config = {
-  projectNo: env.PROJECT_NO,
   aliIconFont: '',
   env: {
     mock: {
@@ -36,7 +35,6 @@ if (isProd && apiServer) {
 module.exports = {
   mode: 'spa',
   env: {
-    PROJECT_NO: config.projectNo,
     NO_LOGIN: process.env.NO_LOGIN
   },
   proxy: config.env[env.MODE],
