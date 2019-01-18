@@ -24,11 +24,6 @@ $ yarn dev
 $ yarn build
 ```
 
-## code style
 
-when you npm i or yarn, prettier has already installed
 
-the configuration file is .prettierrc
 
-Pre-commit Hook use [pretty-quick](https://github.com/azz/pretty-quick), maybe commit in terminal will be better, in IDE
-like webstorm it may get confused behavior😕
