@@ -6,9 +6,13 @@ export default function(context) {
 
   $axios.onRequest(config => {
     let url = config.url
+    // jwt 验证
+    if (store.state.token) {
+      config.headers.common['Authorization'] = `Bearer ${store.state.token}`
+    }
 
     url += url.indexOf('?') > -1 ? '&' : '?'
-    url += `token=${store.state.token}`
+    url += `tenantId=${store.state.tenantId}&userId=${store.state.userId}`
 
     config.url = url
 
@@ -30,6 +34,7 @@ export default function(context) {
         let path = app.router.options.base
         cookie.remove('token', {path})
         cookie.remove('userId', {path})
+        cookie.remove('tenantId', {path})
         redirect('/login')
       }
     }
