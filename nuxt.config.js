@@ -125,6 +125,6 @@ module.exports = {
       src: '~/plugins/element'
     }
   ],
-  modules: ['@nuxtjs/axios'],
+  modules: [['@nuxtjs/axios'], ['@nuxtjs/dotenv', {path: './'}]],
   axios
 }
