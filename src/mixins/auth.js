@@ -10,6 +10,7 @@ export default {
 
     let token = cookie.get('token')
     let userId = cookie.get('userId')
+    let tenantId = cookie.get('tenantId')
 
     // 未登录
     if (!userId || !token) {
@@ -19,18 +20,19 @@ export default {
     else if (!this.$store.state.userId) {
       this.$store.commit('update', {
         token,
-        userId
+        userId,
+        tenantId
       })
 
       try {
         await this.$store.dispatch('fetchUserAndMenuList', {userId})
       } catch (e) {
-        let path = this.$router.options.base
-        cookie.remove('token', {path})
-        cookie.remove('userId', {path})
+        //let path = this.$router.options.base
+        //cookie.remove('token', {path})
+        //cookie.remove('userId', {path})
 
         console.error('auth error: ', e)
-        this.$router.replace('/login')
+        //this.$router.replace('/login')
       }
     }
   }
