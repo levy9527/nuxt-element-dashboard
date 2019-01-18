@@ -12,7 +12,9 @@ export default function(context) {
     }
 
     url += url.indexOf('?') > -1 ? '&' : '?'
-    url += `tenantId=${store.state.tenantId}&userId=${store.state.userId}`
+    url += `tenantId=${store.state.tenantId}&userId=${
+      store.state.userId
+    }&_=${new Date().getTime()}`
 
     config.url = url
 
