@@ -6107,9 +6107,9 @@ prettier@1.13.7:
   version "1.13.7"
   resolved "http://registry.npm.taobao.org/prettier/download/prettier-1.13.7.tgz#850f3b8af784a49a6ea2d2eaa7ed1428a34b7281"
 
-prettier@^1.15.3:
-  version "1.15.3"
-  resolved "https://registry.npmjs.org/prettier/-/prettier-1.15.3.tgz#1feaac5bdd181237b54dbe65d874e02a1472786a"
+prettier@^1.16.0:
+  version "1.16.0"
+  resolved "https://registry.npmjs.org/prettier/-/prettier-1.16.0.tgz#104dd25f5ee3d0c9d0a6ce4bb40ced8481d51219"
 
 pretty-bytes@^5.1.0:
   version "5.1.0"
