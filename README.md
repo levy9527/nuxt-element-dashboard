@@ -43,6 +43,16 @@ mounted() {
   console.log(process.env.TESTING_VAR) // 输出 just-fot-testing
 }
 ```
+**工程自带的环境变量** 
+
+```sh
+# axios的baseURL，可不传。不传时，则使用相对路径发送请求
+API_SERVER=
+# 对应webpack的publicPath，一定要/结尾
+PUBLIC_PATH=
+# 传1则不会有登录拦截
+NO_LOGIN=
+```
 
 ## 构建
 
@@ -54,10 +64,9 @@ mounted() {
 yarn build
 ```
 
-构建默认需要传的环境变量有:
+构建必传的环境变量有:
 
 ```sh
-API_SERVER=
 PUBLIC_PATH=
 ```
 
