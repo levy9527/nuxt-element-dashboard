@@ -27,7 +27,7 @@ Vue.use(Tabs)
 Vue.use(TabPane)
 
 export default {
-  name: 'routeTab',
+  name: 'RouteTab',
   //  components: {ElTabs, ElTabPane},
   props: {
     // el-tabs attribute
@@ -63,7 +63,7 @@ export default {
 <style lang="stylus">
 .route-tab {
   .el-tabs__header.is-top {
-    margin-bottom 40px
+    margin-bottom: 40px;
   }
 }
 </style>
