@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Copyright from '../components/Copyright.vue'
+import Copyright from '../components/copy-right.vue'
 export default {
   name: 'login',
   components: {
