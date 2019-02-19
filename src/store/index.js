@@ -20,7 +20,7 @@ export const mutations = {
     state.userId = payload.id
 
     // 部署不一定是在根路径, 所以cookie要设置path
-    let path = this.$router.options.base
+    let path = process.env.COOKIE_PATH
     cookie.set('token', payload.key, {path})
     cookie.set('userId', payload.id, {path})
   },
@@ -28,7 +28,7 @@ export const mutations = {
     state.token = ''
     state.userId = ''
 
-    let path = this.$router.options.base
+    let path = process.env.COOKIE_PATH
     cookie.remove('token', {path})
     cookie.remove('userId', {path})
   },

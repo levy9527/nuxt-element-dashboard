@@ -32,7 +32,7 @@ export default function(context) {
       })
 
       if (resp.status == 401) {
-        let path = app.router.options.base
+        let path = process.env.COOKIE_PATH
         cookie.remove('token', {path})
         cookie.remove('userId', {path})
         redirect('/login')

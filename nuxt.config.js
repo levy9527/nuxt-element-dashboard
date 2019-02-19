@@ -37,7 +37,8 @@ module.exports = {
   mode: 'spa',
   env: {
     PROJECT_NO: config.projectNo,
-    NO_LOGIN: process.env.NO_LOGIN
+    NO_LOGIN: process.env.NO_LOGIN,
+    COOKIE_PATH: process.env.COOKIE_PATH || '/'
   },
   proxy: config.env[env.MODE],
   router: {
