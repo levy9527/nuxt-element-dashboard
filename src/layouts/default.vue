@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import Copyright from '../components/Copyright.vue'
-import MenuItem from '../components/MenuItem.vue'
+import Copyright from '../components/copy-right.vue'
+import MenuItem from '../components/menu-item.vue'
 import {mapState} from 'vuex'
 import auth from '@/mixins/auth'
 

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import IconFont from '../components/IconFont.vue'
+import IconFont from './icon-font.vue'
 
 export default {
   name: 'MenuItem',

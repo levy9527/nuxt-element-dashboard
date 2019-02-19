@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'copyright'
+  name: 'CopyRight'
 }
 </script>
 <style scoped>
