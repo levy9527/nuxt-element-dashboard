@@ -6,14 +6,15 @@ export default function(context) {
 
   $axios.onRequest(config => {
     let url = config.url
+    // jwt 验证
+    if (store.state.token) {
+      config.headers.common['Authorization'] = `Bearer ${store.state.token}`
+    }
 
     url += url.indexOf('?') > -1 ? '&' : '?'
-    url += `token=${store.state.token}`
-
-    // 调用用户中心的接口需要加上projectNo
-    if (url.indexOf('/security/') > -1) {
-      url += `&projectNo=${process.env.PROJECT_NO}`
-    }
+    url += `tenantId=${store.state.tenantId}&userId=${
+      store.state.userId
+    }&_=${new Date().getTime()}`
 
     config.url = url
 
@@ -35,6 +36,7 @@ export default function(context) {
         let path = process.env.COOKIE_PATH
         cookie.remove('token', {path})
         cookie.remove('userId', {path})
+        cookie.remove('tenantId', {path})
         redirect('/login')
       }
     }

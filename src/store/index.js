@@ -6,6 +6,7 @@ export const state = () => ({
   // 这两个用于client side的使用, 又放cookie里是为了刷新时状态不丢失
   userId: '',
   token: '',
+  tenantId: '',
   meta: {},
 
   user: {},
@@ -18,19 +19,23 @@ export const mutations = {
   login(state, payload) {
     state.token = payload.key
     state.userId = payload.id
+    state.tenantId = payload.tenantId
 
     // 部署不一定是在根路径, 所以cookie要设置path
     let path = process.env.COOKIE_PATH
     cookie.set('token', payload.key, {path})
     cookie.set('userId', payload.id, {path})
+    cookie.set('tenantId', payload.tenantId, {path})
   },
   logout(state) {
     state.token = ''
     state.userId = ''
+    state.tenantId = ''
 
     let path = process.env.COOKIE_PATH
     cookie.remove('token', {path})
     cookie.remove('userId', {path})
+    cookie.remove('tenantId', {path})
   },
   update(state, payload) {
     Object.keys(payload).forEach(k => {

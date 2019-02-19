@@ -9,7 +9,6 @@ let apiServer = process.env.API_SERVER
 let publicPath = process.env.PUBLIC_PATH || 'http://cdn.deepexi.com/'
 
 const config = {
-  projectNo: env.PROJECT_NO,
   aliIconFont: '',
   env: {
     mock: {
@@ -126,6 +125,6 @@ module.exports = {
       src: '~/plugins/element'
     }
   ],
-  modules: ['@nuxtjs/axios'],
+  modules: [['@nuxtjs/axios'], ['@nuxtjs/dotenv', {path: './'}]],
   axios
 }
