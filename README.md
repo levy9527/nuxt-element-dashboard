@@ -4,7 +4,7 @@
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
 
-## Script 
+## Script
 
 ```bash
 # install dependencies
@@ -30,7 +30,7 @@ $ yarn build
 .env文件示例:
 
 ```sh
-# 左边是变量名(一般大写，下划线分割单词)，右边是变量值 
+# 左边是变量名(一般大写，下划线分割单词)，右边是变量值
 # 注意=号两边不能有空格
 TESTING_VAR=just-fot-testing
 ANOTHER_VAR=another
@@ -43,7 +43,7 @@ mounted() {
   console.log(process.env.TESTING_VAR) // 输出 just-fot-testing
 }
 ```
-**工程自带的环境变量** 
+**工程自带的环境变量**
 
 ```sh
 # axios的baseURL，可不传。不传时，则使用相对路径发送请求
@@ -52,6 +52,8 @@ API_SERVER=
 PUBLIC_PATH=
 # 传1则不会有登录拦截
 NO_LOGIN=
+# cookie的path
+COOKIE_PATH=
 ```
 
 ## 构建
