@@ -18,13 +18,10 @@ export const state = () => ({
 //  mutation 必须同步执行
 export const mutations = {
   login(state, payload) {
-    state.token = payload.key
-    state.userId = payload.id
-    state.tenantId = payload.tenantId
-
     // 部署不一定是在根路径, 所以cookie要设置path
     let path = process.env.COOKIE_PATH
     cookieKeys.forEach(key => {
+      state[key] = payload[key]
       cookie.set(key, payload[key], {path})
     })
   },
