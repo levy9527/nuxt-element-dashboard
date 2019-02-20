@@ -1,4 +1,5 @@
 import cookie from 'js-cookie'
+import cookieKeys from '@/const/cookie-keys'
 
 // 最好提前在你的 store 中初始化好所有所需属性
 // https://vuex.vuejs.org/zh-cn/mutations.html
@@ -23,9 +24,9 @@ export const mutations = {
 
     // 部署不一定是在根路径, 所以cookie要设置path
     let path = process.env.COOKIE_PATH
-    cookie.set('token', payload.key, {path})
-    cookie.set('userId', payload.id, {path})
-    cookie.set('tenantId', payload.tenantId, {path})
+    cookieKeys.forEach(key => {
+      cookie.set(key, payload[key], {path})
+    })
   },
   logout(state) {
     state.token = ''
@@ -33,9 +34,9 @@ export const mutations = {
     state.tenantId = ''
 
     let path = process.env.COOKIE_PATH
-    cookie.remove('token', {path})
-    cookie.remove('userId', {path})
-    cookie.remove('tenantId', {path})
+    cookieKeys.forEach(key => {
+      cookie.remove(key, {path})
+    })
   },
   update(state, payload) {
     Object.keys(payload).forEach(k => {
