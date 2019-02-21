@@ -26,12 +26,9 @@ export const mutations = {
     })
   },
   logout(state) {
-    state.token = ''
-    state.userId = ''
-    state.tenantId = ''
-
     let path = process.env.COOKIE_PATH
     cookieKeys.forEach(key => {
+      state[key] = ''
       cookie.remove(key, {path})
     })
   },
