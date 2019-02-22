@@ -43,20 +43,8 @@ mounted() {
   console.log(process.env.TESTING_VAR) // 输出 just-fot-testing
 }
 ```
-**工程自带的环境变量**
 
-```sh
-# axios的baseURL，可不传。不传时，则使用相对路径发送请求
-API_SERVER=
-# 对应webpack的publicPath，一定要/结尾
-PUBLIC_PATH=
-# 传1则不会有登录拦截
-NO_LOGIN=
-# cookie的path
-COOKIE_PATH=
-```
-
-**环境变量说明**
+**自带的环境变量说明**
 
 | 环境变量名  | 说明                                                         | 默认值                  | 示例                      |
 | ----------- | ------------------------------------------------------------ | ----------------------- | ------------------------- |
@@ -68,17 +56,10 @@ COOKIE_PATH=
 
 ## 构建
 
-构建默认生成的是hash路由模式的spa
+构建默认生成的是hash路由模式的spa, 会读取根目录下的.env文件获取环境变量
 
 命令如下:
 
 ```sh
 yarn build
 ```
-
-构建必传的环境变量有:
-
-```sh
-PUBLIC_PATH=
-```
-
