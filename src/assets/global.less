@@ -1,4 +1,4 @@
-mainColor = #1890ff
+@mainColor: #1890ff;
 
 body {
   margin: 0;
@@ -15,11 +15,11 @@ body {
 }
 
 a {
-  color: mainColor;
+  color: @mainColor;
   background-color: transparent;
   text-decoration: none;
   outline: none;
-  cursor: pointer
+  cursor: pointer;
 
   &:hover {
     color: #40a9ff;
@@ -27,14 +27,14 @@ a {
 }
 
 .tooltip-label .el-tooltip {
-  float right
-  transform translateY(10px)
+  float: right;
+  transform: translateY(10px);
 }
 
 .data-table-footer {
   // data-table 底部复用样式
-  margin-top 24px
-  text-align right
+  margin-top: 24px;
+  text-align: right;
 }
 
 

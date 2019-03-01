@@ -60,7 +60,7 @@ export default {
   }
 }
 </script>
-<style lang="stylus">
+<style lang="less">
 .route-tab {
   .el-tabs__header.is-top {
     margin-bottom: 40px;

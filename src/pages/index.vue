@@ -12,7 +12,7 @@ export default {
   methods: {}
 }
 </script>
-<style lang="stylus">
+<style lang="less">
 .index {
   .home-img {
     width: 100%;

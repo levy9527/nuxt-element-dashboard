@@ -21,7 +21,7 @@ export default {
   methods: {}
 }
 </script>
-<style lang="stylus">
+<style lang="less">
 // 参考ant-design pro样式
 .layout-login {
   width: 100%;
@@ -44,6 +44,7 @@ export default {
     position: relative;
     top: 2px;
   }
+
   .main {
     width: 368px;
     margin: 0 auto 100px;

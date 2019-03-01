@@ -34,9 +34,9 @@
     "el-data-table": "^1.1.1",
     "element-ui": "^2.4.11",
     "js-cookie": "^2.2.0",
-    "nuxt": "^2.3.2",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2"
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
+    "nuxt": "^2.3.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
