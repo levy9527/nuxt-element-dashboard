@@ -111,8 +111,8 @@ module.exports = {
   },
   css: [
     {
-      src: '~assets/global.styl',
-      lang: 'stylus'
+      src: '~assets/global.less',
+      lang: 'less'
     }
   ],
   srcDir: 'src/',
