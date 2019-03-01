@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import cookie from 'js-cookie'
+import cookieKeys from '@/const/cookie-keys'
 
 export default function(context) {
   let {$axios, store, app, redirect} = context
@@ -34,9 +35,9 @@ export default function(context) {
 
       if (resp.status == 401) {
         let path = process.env.COOKIE_PATH
-        cookie.remove('token', {path})
-        cookie.remove('userId', {path})
-        cookie.remove('tenantId', {path})
+        cookieKeys.forEach(key => {
+          cookie.remove(key, {path})
+        })
         redirect('/login')
       }
     }
