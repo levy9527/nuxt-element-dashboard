@@ -24,7 +24,9 @@ export default {
       this.$store.commit('update', cookieInfo)
 
       try {
-        await this.$store.dispatch('fetchUserAndMenuList', {userId})
+        await this.$store.dispatch('fetchUserAndMenuList', {
+          userId: cookieKeys.userId
+        })
       } catch (e) {
         //let path = this.$router.options.base
         //cookie.remove('token', {path})
