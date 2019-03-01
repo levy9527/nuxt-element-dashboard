@@ -76,6 +76,12 @@ export default {
 </script>
 
 <style lang="less">
+@menu-bg: #001529;
+@submenu-bg: #000c17;
+@primary-color: #1890ff;
+// antd menu 高度
+@menu-height: 40px;
+
 #__nuxt {
   .el-icon-sort {
     transform: rotate(-90deg);
@@ -107,18 +113,12 @@ export default {
     }
   }
 
-  @menuBg: #001529;
-  @submenuBg: #000c17;
-  @mainColor: #1890ff;
-  // antd menu 高度
-  @menuHeight: 40px;
-
   // 子菜单
   .el-menu--vertical {
     .el-menu-item,
     .el-submenu__title {
-      height: menuHeight;
-      line-height: menuHeight;
+      height: @menu-height;
+      line-height: @menu-height;
     }
 
     .iconfont {
@@ -130,7 +130,7 @@ export default {
     min-height: 100vh;
     border-right: none;
     font-weight: 300;
-    background: menuBg;
+    background: @menu-bg;
 
     /* transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1); */
 
@@ -138,8 +138,8 @@ export default {
     box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
 
     .el-submenu__title {
-      height: menuHeight;
-      line-height: menuHeight;
+      height: @menu-height;
+      line-height: @menu-height;
     }
 
     .el-submenu {
@@ -151,19 +151,19 @@ export default {
     }
 
     .el-menu-item {
-      height: menuHeight;
-      line-height: menuHeight;
+      height: @menu-height;
+      line-height: @menu-height;
       margin: 8px 0;
 
       &:hover {
         color: #fff !important;
 
-        /* background: menuBg; */
+        /* background: menu-bg; */
       }
 
       &.is-active {
         color: #fff;
-        background: mainColor !important;
+        background: @primary-color !important;
       }
     }
   }
