@@ -53,7 +53,10 @@ export const actions = {
       `/deepexi-tenant/api/v1/tenants/login`,
       payload
     )
-    commit('login', resp.payload)
+
+    const userDetail = {...resp.payload}
+    userDetail.userId = userDetail.id
+    commit('login', userDetail)
 
     dispatch('fetchUserAndMenuList')
   },
