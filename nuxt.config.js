@@ -17,8 +17,8 @@ const config = {
       '/deepexi-permission': mockServer
     },
     dev: {
-      '/deepexi-tenant': mockServer,
-      '/deepexi-permission': mockServer
+      '/deepexi-tenant': apiServer,
+      '/deepexi-permission': apiServer
     }
   }
 }
