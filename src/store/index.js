@@ -47,36 +47,35 @@ export const mutations = {
 export const actions = {
   async login(context, payload) {
     // store 对象
-    // console.log(context)
     let {commit, state, dispatch} = context
 
-    let resp = await this.$axios.$post(`/security/api/v1/users/login`, payload)
+    let resp = await this.$axios.$post(
+      `/deepexi-tenant/api/v1/tenants/login`,
+      payload
+    )
     commit('login', resp.payload)
 
-    dispatch('fetchUserAndMenuList', {userId: resp.payload.id})
+    dispatch('fetchUserAndMenuList')
   },
-  async fetchUserAndMenuList({commit}, {userId}) {
-    let user = await this.$axios.$get(`/security/api/v1/users/${userId}`)
+  async fetchUserAndMenuList({commit}) {
+    let user = await this.$axios.$get(
+      `/deepexi-permission/api/v1/users/currentUser`
+    )
 
-    commit('update', {user: user.payload})
+    commit('update', {user: user.payload || {}})
 
     let menuResources = await this.$axios.$get(
-      `/security/api/v1/users/${userId}/menuResources`
+      `/deepexi-permission/api/v1/apps/service/userResource`
     )
-    if (!menuResources.payload)
-      menuResources.payload = {
-        menu: [],
-        permission: {}
-      }
-
-    commit('update', {
-      menuList: menuResources.payload.menu,
-      permission: menuResources.payload.permission
-    })
+    if (menuResources && menuResources.payload) {
+      commit('update', {
+        menuList: menuResources.payload
+      })
+    }
   },
   // 配置的元信息
-  async fetchMetaInfo({commit}, {projectNo}) {
-    let resp = await this.$axios.$get('/security/api/v1/configs')
+  async fetchMetaInfo({commit}) {
+    let resp = await this.$axios.$get('/deepexi-permission/api/v1/configs')
     let meta = {}
     resp.payload.forEach(item => {
       meta[item.key] = item.value
