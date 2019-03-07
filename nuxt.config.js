@@ -2,9 +2,10 @@ require('dotenv').config()
 
 const env = process.env
 const isProd = env.MODE == 'prod'
+const mockServer = 'http://yapi.demo.qunar.com/mock/55299'
 
 // 不能以斜杠结尾
-let apiServer = process.env.API_SERVER
+let apiServer = process.env.API_SERVER || 'http://your.dev.server'
 // 必须以斜杠结尾
 let publicPath = process.env.PUBLIC_PATH || 'http://cdn.deepexi.com/'
 
@@ -12,10 +13,12 @@ const config = {
   aliIconFont: '',
   env: {
     mock: {
-      '/security': 'http://yapi.demo.qunar.com/mock/9638'
+      '/deepexi-tenant': mockServer,
+      '/deepexi-permission': mockServer
     },
     dev: {
-      '/security': 'http://your.dev.server'
+      '/deepexi-tenant': mockServer,
+      '/deepexi-permission': mockServer
     }
   }
 }
