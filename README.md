@@ -1,57 +1,65 @@
 # nuxt2 + element dashboard
 
-## Build Setup
-
-```bash
-# install dependencies
-$ npm install # Or yarn install
-
-# serve with hot reload at localhost:3000
-# using mock api
-$ npm run dev
-
-# using backend api
-$ npm run test
-
-# build for production and launch server
-$ npm run build && npm start
-```
-
-## deploy
-
-support node/docker/now
-
-### node
-
-run nodejs in your server
-
-```bash
-$ ./nohup.sh
-```
-
-### docker
-
-run docker in your server
-
-```bash
-$ ./start.sh
-```
-
-### now
-
-deploy to now
-
-```bash
-$ npm run deploy
-```
+## Docs
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
 
-## code style
+## Script
 
-when you npm i or yarn, prettier has already installed
+```bash
+# install dependencies
+$ yarn
 
-the configuration file is .prettierrc
+# serve with hot reload at localhost:3000
+# using mock api to develop
+$ yarn mock
 
-Pre-commit Hook use [pretty-quick](https://github.com/azz/pretty-quick), maybe commit in terminal will be better, in IDE
-like webstorm it may get confused behavior😕
+# using mock api to develop which doesn't need login
+$ yarn mock:nologin
+
+# using backend api to develop
+$ yarn dev
+
+# build for production
+$ yarn build
+```
+
+## 环境变量
+使用.env设置环境变量, 即在项目根目录新建一个.env文件, 填写环境变量即可。
+
+.env文件示例:
+
+```sh
+# 左边是变量名(一般大写，下划线分割单词)，右边是变量值
+# 注意=号两边不能有空格
+TESTING_VAR=just-fot-testing
+ANOTHER_VAR=another
+```
+
+可以在项目的vue文件或js文件中读取
+
+```js
+mounted() {
+  console.log(process.env.TESTING_VAR) // 输出 just-fot-testing
+}
+```
+
+**自带的环境变量说明**
+
+| 环境变量名  | 说明                                                         | 默认值                  | 示例                      |
+| ----------- | ------------------------------------------------------------ | ----------------------- | ------------------------- |
+| API_SERVER  | axios的baseURL，可不传。不传时，则使用相对路径发送请求       |                         | https://www.easy-mock.com |
+| PUBLIC_PATH | 对应webpack的publicPath，用于指定静态文件访问路径，一定要/结尾 | http://cdn.deepexi.com/ | http://cdn.deepexi.com/   |
+| NO_LOGIN    | 是否登陆拦截，传1则不会有登录拦截                            |                         | 1                         |
+| COOKIE_PATH | 用于设置cookie的path，如果多个项目需要共享cookie，则应该保证项目在共同的目录下，且设置COOKIE_PATH为它们的共同目录地址 | /                       | /xpaas                    |
+
+
+## 构建
+
+构建默认生成的是hash路由模式的spa, 会读取根目录下的.env文件获取环境变量
+
+命令如下:
+
+```sh
+yarn build
+```

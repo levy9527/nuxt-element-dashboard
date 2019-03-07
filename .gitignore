@@ -1,3 +1,6 @@
+# dotenv
+.env
+
 # dependencies
 node_modules
 
@@ -12,3 +15,4 @@ dist
 
 # IDEA
 .idea
+.DS_Store
