@@ -28,7 +28,7 @@
           <el-col style="text-align: right;">
             <el-dropdown @command="handleDropdown">
               <span class="el-dropdown-link">
-                {{ $store.state.user.fullname }}
+                {{ $store.state.user.nickname }}
                 <i class="el-icon-arrow-down el-icon--right"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
