@@ -5,9 +5,9 @@ const isProd = env.MODE == 'prod'
 const mockServer = 'http://yapi.demo.qunar.com/mock/55299'
 
 // 不能以斜杠结尾
-let apiServer = process.env.API_SERVER || 'http://your.dev.server'
+let apiServer = process.env.API_SERVER
 // 必须以斜杠结尾
-let publicPath = process.env.PUBLIC_PATH || 'http://cdn.deepexi.com/'
+let publicPath = process.env.PUBLIC_PATH
 
 const config = {
   aliIconFont: '',
