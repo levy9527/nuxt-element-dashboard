@@ -2,8 +2,7 @@ language: node_js
 node_js:
 - lts/*
 env:
-- API_SERVER=https://easy-mock.com/mock/5c1b3895fe5907404e654045/femessage-mock
-- PUBLIC_PATH=http://levy.work/nuxt-element-dashboard/
+- API_SERVER=https://easy-mock.com/mock/5c1b3895fe5907404e654045/femessage-mock PUBLIC_PATH=http://levy.work/nuxt-element-dashboard/
 install:
 - yarn
 script:
