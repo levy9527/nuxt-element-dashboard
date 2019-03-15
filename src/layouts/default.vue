@@ -135,7 +135,7 @@ export default {
     /* transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1); */
 
     /* transition-duration: .3s; */
-    box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+    box-shadow: 1px 0 6px rgba(0, 21, 41, 0.35);
 
     .el-submenu__title {
       height: @menu-height;
