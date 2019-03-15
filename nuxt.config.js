@@ -2,7 +2,8 @@ require('dotenv').config()
 
 const env = process.env
 const isProd = env.MODE == 'prod'
-const mockServer = 'http://yapi.demo.qunar.com/mock/55299'
+const mockServer =
+  'https://easy-mock.com/mock/5c1b3895fe5907404e654045/femessage-mock'
 
 // 不能以斜杠结尾
 let apiServer = process.env.API_SERVER
