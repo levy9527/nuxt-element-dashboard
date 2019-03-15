@@ -97,8 +97,8 @@ export default {
     overflow: hidden;
 
     .logo-img {
-      width: 32px;
-      height: 32px;
+      // width: 32px;
+      // height: 32px;
       vertical-align: middle;
     }
 
