@@ -1,27 +1,46 @@
 # nuxt2 + element dashboard
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/levy9527/nuxt-element-dashboard/pulls)
 
-## Docs
+## Feature
 
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+在[Nuxt.js](https://github.com/nuxt/nuxt.js)的基础上，集成以下技术栈：
+
+- Vue.js: [vue 2.0](https://cn.vuejs.org/v2/guide/index.html)
+
+- 路由管理：[vue-router](https://router.vuejs.org/api/)
+
+- 状态管理：[vuex](https://vuex.vuejs.org/)
+
+- 页面Meta信息：[Vue-Meta](https://github.com/declandewet/vue-meta)
+
+- UI库：[element-ui](http://element.eleme.io/#/)
+
+- ajax库： [axios](https://github.com/axios/axios)
+
+- css预处理器：[less](http://lesscss.org/)
+
+- 代码格式化：[prettier](https://github.com/prettier/prettier)
 
 ## Script
 
 ```bash
-# install dependencies
-$ yarn
+# 安装依赖
+yarn
 
-# serve with hot reload at localhost:3000
-# using mock api to develop
-$ yarn mock
+# 使用mock接口进行开发
+yarn mock
 
-# using mock api to develop which doesn't need login
-$ yarn mock:nologin
+# 使用mock接口进行开发，且不会有登录拦截
+yarn mock:nologin
 
-# using backend api to develop
-$ yarn dev
+# 使用后端接口进行开发
+yarn dev
 
-# build for production
-$ yarn build
+# 使用webpack进行生产构建
+yarn build
+
+# 生成静态站点
+yarn generate
 ```
 
 ## 环境变量
@@ -63,3 +82,7 @@ mounted() {
 ```sh
 yarn build
 ```
+
+## License
+
+[MIT](./LICENSE)
