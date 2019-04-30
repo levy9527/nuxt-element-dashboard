@@ -1,207 +1,349 @@
 <template>
-  <el-container style="background: #f0f2f5;">
-    <el-menu
-      :collapse="collapse"
-      class="aside-menu"
-      :default-active="$route.path"
-      router
-      background-color="#001529"
-      text-color="hsla(0,0%,100%,.67)"
-    >
-      <div class="logo">
-        <nuxt-link to="/">
-          <img class="logo-img" :src="$store.state.meta.logo" alt="logo" />
-          <h1 class="logo-text">{{ $store.state.meta.appName }}</h1>
-        </nuxt-link>
-      </div>
-      <menu-item :menuList="menuList"></menu-item>
-    </el-menu>
+  <el-container>
+    <div :class="{hideSidebar: collapse}" class="sidebar-container">
+      <el-menu
+        :collapse="collapse"
+        :default-active="$route.path"
+        :collapse-transition="false"
+        router
+        class="aside-menu"
+        background-color="#2D303B"
+        text-color="#FFFFFF"
+      >
+        <div class="logo">
+          <nuxt-link to="/">
+            <img class="logo-img" :src="$store.state.meta.logo" alt="logo" />
+            <h1 class="logo-text">{{ $store.state.meta.appName }}</h1>
+          </nuxt-link>
+        </div>
+        <el-scrollbar wrap-class="scrollbar-wrapper">
+          <menu-item :menuList="menuList"></menu-item>
+        </el-scrollbar>
 
-    <el-container>
-      <el-header>
-        <el-row type="flex" justify="space-between" align="middle">
-          <el-col>
-            <el-button @click="collapse = !collapse"
-              ><i class="el-icon-sort"></i
-            ></el-button>
-          </el-col>
-          <el-col style="text-align: right;">
-            <el-dropdown @command="handleDropdown">
+        <div class="fix-btn-wrap">
+          <div class="collapse-btn" @click="collapse = !collapse">
+            <img
+              class="btn-icon"
+              src="https://deepexi.oss-cn-shenzhen.aliyuncs.com/deepexi-services/%E5%B7%A6%E4%BE%A7%E8%8F%9C%E5%8D%95/expand.svg"
+              alt=""
+            />
+          </div>
+        </div>
+      </el-menu>
+    </div>
+    <div class="main-container">
+      <div class="header-wrap">
+        <el-row class="head-container" type="flex" justify="end" align="middle">
+          <div class="head-right">
+            <div class="head-active">
+              <img :src="userImg" class="userName-Img" alt="userName-Img" />
+            </div>
+            <!-- 用户名称 -->
+            <div class="userName-text">{{ $store.state.user.nickname }}</div>
+            <el-dropdown placement="bottom-end" @command="exitBtn">
               <span class="el-dropdown-link">
-                {{ $store.state.user.nickname }}
-                <i class="el-icon-arrow-down el-icon--right"></i>
+                <i class="el-icon-arrow-down el-icon--right set-Iconcolor"></i>
               </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="logout">退出</el-dropdown-item>
+              <el-dropdown-menu slot="dropdown" class="user-drop-menu">
+                <el-dropdown-item
+                  v-for="(item, index) in dropdownList"
+                  :key="index"
+                  :command="item.command"
+                  >{{ item.title }}</el-dropdown-item
+                >
               </el-dropdown-menu>
             </el-dropdown>
-          </el-col>
+          </div>
         </el-row>
-      </el-header>
-
-      <el-main class="nuxt-main"> <nuxt></nuxt> </el-main>
-
-      <el-footer> <copyright></copyright> </el-footer>
-    </el-container>
+      </div>
+      <el-main class="nuxt-main">
+        <nuxt></nuxt>
+      </el-main>
+      <el-footer>
+        <copyright></copyright>
+      </el-footer>
+    </div>
   </el-container>
 </template>
 
 <script>
-import Copyright from '../components/copyright.vue'
-import MenuItem from '../components/menu-item.vue'
+import Copyright from '@/components/copyright.vue'
 import {mapState} from 'vuex'
 import auth from '@/mixins/auth'
+import MenuItem from '@/components/menu-item.vue'
+import IconFont from '@/components/icon-font.vue'
+import {Scrollbar} from 'element-ui'
 
 export default {
   mixins: [auth],
   components: {
     Copyright,
-    MenuItem
+    MenuItem,
+    ElScrollbar: Scrollbar
   },
   data() {
     return {
-      collapse: false
-    }
-  },
-  methods: {
-    handleDropdown(action) {
-      this.$store.commit(action)
-      this.$router.replace('/login')
+      collapse: false,
+      dropdownList: [
+        {
+          title: '退出',
+          command: 'exit'
+        }
+      ]
     }
   },
   computed: {
-    ...mapState(['menuList'])
+    ...mapState(['menuList']),
+    userImg() {
+      return (
+        this.$store.state.user.avatar ||
+        'https://deepexi.oss-cn-shenzhen.aliyuncs.com/xpaas-console/user-portrait.png'
+      )
+    }
+  },
+  methods: {
+    exitBtn(key, keyPath) {
+      if (key == 'exit') {
+        this.$store.commit('logout')
+      }
+    }
   }
 }
 </script>
 
 <style lang="less">
-@menu-bg: #001529;
-@submenu-bg: #000c17;
-@primary-color: #1890ff;
-// antd menu 高度
-@menu-height: 40px;
-
 #__nuxt {
   .el-icon-sort {
     transform: rotate(-90deg);
   }
 
-  // aside-menu
-  .logo {
-    position: relative;
+  // dropdown
+  .el-dropdown-link {
+    cursor: pointer;
+    color: #409eff;
+  }
+
+  .header-wrap {
     height: 60px;
-    line-height: 60px;
-    padding-left: 18px;
-    background: #002140;
+    padding: 0 24px;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    background: #fff;
+
+    .head-container {
+      height: 100%;
+    }
+
+    .head-right {
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+
+      div {
+        display: inline-block;
+      }
+
+      .head-active {
+        .userName-Img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          margin: 0 15px;
+        }
+      }
+
+      .userName-text {
+        text-align: center;
+        overflow: hidden;
+        margin-right: 10px;
+      }
+
+      .head-search {
+        .set-search {
+          margin-right: 5px;
+        }
+
+        .head-autocomplete {
+          .el-icon-search {
+            cursor: pointer;
+            font-size: 18px;
+          }
+        }
+
+        .el-dropdown-link {
+          font-size: 18px;
+          color: #a2a2b1 !important;
+        }
+      }
+
+      .head-message {
+        margin: 0 30px 0 20px;
+
+        .item {
+          .set-IconSize {
+            height: 100%;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  // main
+  .nuxt-main {
+    margin: 10px 20px 0;
+    padding: 10px;
+    background: #fff;
+  }
+
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
+
+  .main-container {
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex: 1;
+  }
+
+  .sidebar-container {
+    transition: width 0.28s;
+    width: 200px !important;
+    height: 100vh;
     overflow: hidden;
-
-    .logo-img {
-      // width: 32px;
-      // height: 32px;
-      vertical-align: middle;
-    }
-
-    .logo-text {
-      color: #fff;
-      display: inline-block;
-      vertical-align: middle;
-      font-size: 20px;
-      margin: 0 0 0 12px;
-      font-weight: 400;
-      opacity: 1;
-    }
-  }
-
-  // 子菜单
-  .el-menu--vertical {
-    .el-menu-item,
-    .el-submenu__title {
-      height: @menu-height;
-      line-height: @menu-height;
-    }
-
-    .iconfont {
-      display: none;
-    }
-  }
-
-  .aside-menu {
-    min-height: 100vh;
-    border-right: none;
-    font-weight: 300;
-    background: @menu-bg;
-
-    /* transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1); */
-
-    /* transition-duration: .3s; */
     box-shadow: 1px 0 6px rgba(0, 21, 41, 0.35);
 
-    .el-submenu__title {
-      height: @menu-height;
-      line-height: @menu-height;
+    //reset element-ui css
+    .horizontal-collapse-transition {
+      transition:
+        0s width ease-in-out,
+ 0s padding-left ease-in-out,
+        0s padding-right ease-in-out;
     }
 
-    .el-submenu {
-      margin: 8px 0;
+    .logo {
+      position: relative;
+      height: 60px;
+      line-height: 60px;
+      padding-left: 10px;
+      background: #2d303b;
+      overflow: hidden;
 
-      &.is-active {
-        margin-bottom: 8px;
-      }
-    }
+      .logo-img {
+        /* width: 32px; */
 
-    .el-menu-item {
-      height: @menu-height;
-      line-height: @menu-height;
-      margin: 8px 0;
-
-      &:hover {
-        color: #fff !important;
-
-        /* background: menu-bg; */
+        /* height: 32px; */
+        vertical-align: middle;
       }
 
-      &.is-active {
+      .logo-text {
         color: #fff;
-        background: @primary-color !important;
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 20px;
+        margin: 0 0 0 5px;
+        font-weight: 400;
+        opacity: 1;
       }
     }
-  }
 
-  // 未折叠
-  .aside-menu:not(.el-menu--collapse) {
-    min-width: 256px;
-    max-width: $min-width;
+    .scrollbar-wrapper {
+      height: calc(100vh - 110px);
+      overflow-x: hidden !important;
+      margin-bottom: 0 !important;
 
-    [class*='icon'] {
-      font-size: 14px;
-      margin-right: 5px;
-    }
-  }
-
-  // 折叠
-  .aside-menu.el-menu--collapse {
-    /* width: 80px; */
-    min-width: 64px;
-
-    .logo-text {
-      opacity: 0;
+      .el-scrollbar__view {
+        height: 100%;
+      }
     }
 
-    // 没有子菜单
-    .el-tooltip {
-      margin-left: 4px;
+    .el-scrollbar__bar.is-vertical {
+      right: 0;
+    }
+
+    .is-horizontal {
+      display: none;
+    }
+
+    .el-menu {
+      border: none;
+      height: 100%;
+      width: 100% !important;
+
+      .item-title {
+        position: relative;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          position: absolute;
+          top: 50%;
+          left: -12px;
+          transform: translateY(-50%);
+          bottom: 0;
+          width: 5px;
+          height: 5px;
+          background: rgba(171, 172, 176, 1);
+          border-radius: 1px;
+        }
+      }
+
+      .el-menu-item {
+        &.is-active {
+          .item-title {
+            &::before {
+              width: 5px;
+              height: 16px;
+              background-color: #5d81f9;
+              border-radius: 15px;
+            }
+          }
+        }
+      }
 
       [class*='icon'] {
-        font-size: 16px;
-        margin: 0;
+        font-size: 14px;
+        margin-right: 5px;
       }
     }
 
-    // 有子菜单
-    .el-submenu__title {
-      margin-left: 4px;
+    .fix-btn-wrap {
+      height: 50px;
 
+      .collapse-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        width: 100%;
+        background: #343744;
+        cursor: pointer;
+      }
+
+      .btn-icon {
+        transform: rotate(180deg);
+        font-size: 16px;
+        width: 16px;
+      }
+    }
+
+    // 折叠
+    &.hideSidebar {
+      width: 64px !important;
+
+      .logo {
+        padding-left: 13px;
+      }
+
+      .scrollbar-wrapper {
+        height: calc(100vh - 60px - 50px);
+      }
+
+      .el-submenu__title {
+        text-align: center;
+      }
+
+      // 有子菜单
       .sub-menu-title,
       .el-submenu__icon-arrow {
         display: none;
@@ -211,33 +353,30 @@ export default {
         font-size: 16px;
         margin: 0;
       }
+
+      .fix-btn-wrap {
+        .btn-icon {
+          transform: rotate(0deg);
+        }
+      }
     }
-  }
 
-  // header
-  .el-header {
-    padding: 10px 20px;
+    // when menu collapsed
+    .menu--vertical {
+      // the scroll bar appears when the subMenu is too long
+      > .menu--popup {
+        max-height: 100vh;
+        overflow-y: auto;
 
-    /* height: 60px !important; */
-    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-    background: #fff;
-  }
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
 
-  // main
-  .nuxt-main {
-    margin: 24px 24px 0;
-    padding: 24px;
-    background: #fff;
-  }
-
-  // dropdown
-  .el-dropdown-link {
-    cursor: pointer;
-    color: #409eff;
-  }
-
-  .el-icon-arrow-down {
-    font-size: 12px;
+        &::-webkit-scrollbar-thumb {
+          border-radius: 20px;
+        }
+      }
+    }
   }
 }
 </style>

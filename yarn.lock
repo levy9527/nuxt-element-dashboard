@@ -757,6 +757,11 @@
     lodash.get "^4.4.2"
     lodash.set "^4.3.2"
 
+"@femessage/theme-deepexi@^2.8.2":
+  version "2.8.2"
+  resolved "http://levy.ren:4873/@femessage%2ftheme-deepexi/-/theme-deepexi-2.8.2.tgz#2614675b7484c677f206a0159b6aab75db329114"
+  integrity sha512-O9tpHhoXfb5RHGi9rZjEhrdVWB60EM2Tjn24g32OX097pxFuVAitBqYVSAOyQtNVgt8RPU8DelUXSYMV0Xi1/w==
+
 "@gerhobbelt/ast-types@0.10.1-15":
   version "0.10.1-15"
   resolved "https://registry.npmjs.org/@gerhobbelt/ast-types/-/ast-types-0.10.1-15.tgz#d190cb08d145905cc46a8daae463d15682cebda4"

@@ -59,7 +59,7 @@ module.exports = {
           'component',
           {
             libraryName: 'element-ui',
-            styleLibraryName: 'theme-chalk'
+            styleLibraryName: '~node_modules/@femessage/theme-deepexi/lib'
           }
         ]
       ]

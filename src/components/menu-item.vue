@@ -3,13 +3,19 @@
     <div v-for="m in menuList" :key="m.id" class="menu-item">
       <el-menu-item :index="m.url" v-if="!m.children">
         <icon-font :icon="m.icon"></icon-font>
-        <span slot="title">{{ m.name }}</span>
+        <span slot="title" class="item-title">{{ m.name }}</span>
       </el-menu-item>
 
       <el-submenu v-else :index="m.id + ''">
         <template slot="title">
           <!--<i class="el-icon-menu"></i>-->
-          <icon-font :icon="m.icon"></icon-font>
+          <img
+            v-if="checkUrl(m.icon)"
+            class="menu-item-img"
+            :src="m.icon"
+            alt=""
+          />
+          <icon-font v-else :icon="m.icon"></icon-font>
           <span class="sub-menu-title">{{ m.name }}</span>
         </template>
 
@@ -31,7 +37,20 @@ export default {
     menuList: {
       type: Array
     }
+  },
+  methods: {
+    checkUrl(urlString) {
+      const reg = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/
+      return urlString && reg.test(urlString)
+    }
   }
 }
 </script>
-<style></style>
+<style lang="less">
+.menu-item {
+  .menu-item-img {
+    width: 16px;
+    margin-right: 3px;
+  }
+}
+</style>

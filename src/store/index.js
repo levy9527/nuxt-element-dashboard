@@ -34,6 +34,7 @@ export const mutations = {
         path: cookiePath
       })
     })
+    this.$router.replace('/login')
   },
   update(state, payload) {
     Object.keys(payload).forEach(k => {
@@ -68,7 +69,7 @@ export const actions = {
     commit('update', {user: user.payload || {}})
 
     let menuResources = await this.$axios.$get(
-      `/deepexi-permission/api/v1/apps/service/userResource`
+      `/deepexi-permission/api/v2/apps/service/userResource`
     )
     if (menuResources && menuResources.payload) {
       commit('update', {
