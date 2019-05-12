@@ -1,18 +1,24 @@
+branches:
+  only:
+    - master
 language: node_js
 node_js:
 - lts/*
+git:
+  depth: 3
 env:
 - API_SERVER=https://easy-mock.com/mock/5c1b3895fe5907404e654045/femessage-mock PUBLIC_PATH=http://levy.work/nuxt-element-dashboard/
 install:
-- yarn
+- yarn --frozen-lockfile
 script:
-- yarn build
+- ./build.sh
+after_success:
+- GREN_GITHUB_TOKEN=$GITHUB_TOKEN yarn release
+- ./notify.sh
 cache: yarn
 deploy:
   provider: pages
   skip-cleanup: true
   keep-history: true
   local-dir: dist
-  on:
-    branch: master
   github-token: $GITHUB_TOKEN
