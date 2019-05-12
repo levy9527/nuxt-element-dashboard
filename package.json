@@ -1,6 +1,6 @@
 {
   "name": "nuxt-element-dashboard",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Nuxt2 + element UI project",
   "author": "levy <levy9527@qq.com>",
   "license": "MIT",
@@ -24,8 +24,8 @@
     "start:docker": "nuxt start",
     "generate": "cross-env MODE=prod nuxt generate",
     "deploy": "now --npm --public",
-		"stdver": "standard-version -m '[skip ci] chore(release): v%s'",
-		"release": "gren release --override"
+    "stdver": "standard-version -m '[skip ci] chore(release): v%s'",
+    "release": "gren release --override"
   },
   "dependencies": {
     "@femessage/el-form-renderer": "^1.3.0",
