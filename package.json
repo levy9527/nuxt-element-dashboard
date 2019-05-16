@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@femessage/el-form-renderer": "^1.3.0",
-    "@femessage/theme-deepexi": "^2.8.2",
+    "@femessage/theme-deepexi": "^2.4.11",
     "@nuxtjs/axios": "^5.0.1",
     "@nuxtjs/dotenv": "^1.3.0",
     "dayjs": "^1.7.4",
