@@ -69,13 +69,11 @@
 <script>
 import Copyright from '@/components/copyright.vue'
 import {mapState} from 'vuex'
-import auth from '@/mixins/auth'
 import MenuItem from '@/components/menu-item.vue'
 import IconFont from '@/components/icon-font.vue'
 import {Scrollbar} from 'element-ui'
 
 export default {
-  mixins: [auth],
   components: {
     Copyright,
     MenuItem,

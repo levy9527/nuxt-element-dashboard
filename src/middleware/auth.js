@@ -1,46 +1,57 @@
-/**
- * Created by levy on 2018/2/24.
- * @deprecated 改为静态化部署后, 不再使用它
+/*
+ * @Author: Han
+ * @Date: 2019-05-08 14:32:04
+ * @Last Modified by: Han
+ * @Last Modified time: 2019-05-15 16:30:31
+ * @Description 路由鉴权中间件，实现其他路由守卫功能请新建一个中间件
+ *
+ * **********************************************************
+ * * @Strong 这是一个路由中间件，请不要在 serverMiddleware 中使用 *
+ * **********************************************************
  */
 
-export default async function(context) {
-  if (process.env.NO_LOGIN > 0) return
+import cookie from 'js-cookie'
+import cookieKeys from '@/const/cookie-keys'
 
-  let {store, route, redirect, req} = context
+const LOGIN_PATH = '/login'
+// 路由白名单，直接绕过路由守卫
+const whiteList = [LOGIN_PATH]
 
-  // https://stackoverflow.com/questions/10730362/get-cookie-by-name
-  const getCookie = function(cookie, name) {
-    var value = '; ' + cookie
-    var parts = value.split('; ' + name + '=')
-    if (parts.length == 2)
-      return parts
-        .pop()
-        .split(';')
-        .shift()
+export default async ({store, redirect, env, route}) => {
+  if (process.server) return
+
+  const {NO_LOGIN} = env
+  const {path} = route
+
+  // 开发时可以用 NO_LOGIN 跳过路由鉴权
+  if (NO_LOGIN > 0) return
+
+  // 鉴权白名单
+  if (whiteList.indexOf(path) > -1) return
+
+  let cookieInfo = {}
+
+  cookieKeys.forEach(key => {
+    cookieInfo[key] = cookie.get(key)
+  })
+
+  const {userId, token} = cookieInfo
+
+  // 未登录
+  if (!userId || !token) {
+    redirect(LOGIN_PATH)
+    return
   }
 
-  // 应对刷新 状态丢失
-  if (process.server && route.name && route.path !== '/login') {
-    let userId = getCookie(req.headers.cookie, 'userId')
-
-    // 未登录
-    if (!userId) return redirect('/login')
-
-    // 已登录
-    store.commit('update', {
-      token: getCookie(req.headers.cookie, 'token'),
-      userId
-    })
-    let p
+  // 已登录但是state因刷新丢失
+  if (!store.state.userId) {
+    store.commit('update', cookieInfo)
     try {
-      p = await store.dispatch('fetchUserAndMenuList', {userId})
-      return p
+      await store.dispatch('fetchUserAndMenuList', {
+        userId
+      })
     } catch (e) {
-      // TODO
-      // 1. clear cookie
-      // 2. show message
-      console.log('auth error: ', e)
-      redirect('/login')
+      console.error('auth error: ', e)
     }
   }
 }

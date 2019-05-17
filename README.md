@@ -55,31 +55,36 @@ yarn generate
 
 ```sh
 ├── README.md
-├── nuxt.config.js  框架配置文件
-├── package.json    
-├── src
-│   ├── assets      资源，包括样式文件与图片
-│   │   └── global.less
-│   ├── components  可复用的组件
-│   ├── const       常量文件
-│   │   ├── api.js  定义api路径
-│   │   └── path.js 定义页面跳转路径
-│   ├── layouts     可复用的页面布局
-│   │   ├── default.vue 
+├── doc
+│   └── dev.md
+├── nuxt.config.js         框架配置文件
+├── package.json
+├── src                    开发目录
+│   ├── assets             资源，包括样式文件与图片
+│   │   ├── global.less    全局样式类
+│   │   └── var.less       样式变量，支持less变量自动引入，即不用在less中import就能直接使用变量
+│   ├── components         业务无关的可复用的组件
+│   ├── const              常量文件
+│   │   ├── api.js         定义api路径
+│   │   ├── path.js        定义页面跳转路径
+│   │   └── cookie-keys.js cookie key管理
+│   ├── container          业务有关的vue组件
+│   ├── layouts            可复用的页面布局
+│   │   ├── default.vue
 │   │   └── login.vue
-│   ├── middleware  自定义函数，会在每个页面渲染前执行
-│   │   └── meta.js
-│   ├── mixins      可复用的“织入”页面的代码片断
-│   │   └── auth.js
-│   ├── pages       应用视图 & 路由名称，每个文件都对应一个路由视图，开发者框无需手动维护路由文件
+│   ├── middleware         自定义函数，会在每个页面渲染前执行
+│   │   └── auth.js        路由鉴权中间件
+│   ├── mixins             可复用的“织入”页面的代码片断
+│   ├── pages              应用视图 & 路由名称，每个文件都对应一个路由视图，开发者框无需手动维护路由文件
 │   │   ├── index.vue
 │   │   └── login.vue
-│   ├── plugins     应用插件，在Vue.js 初始化前运行，可在这里引入第三方类库
-│   │   ├── axios.js
-│   │   └── element.js
-│   └── store       Vuex状态管理文件
+│   ├── plugins            应用插件，在Vue.js 初始化前运行，可在这里引入第三方类库
+│   │   ├── axios.js       请求拦截
+│   │   └── element.js     引入element-ui
+│   └── store              Vuex状态管理文件
 │       └── index.js
-├── static          静态资源
+├── static                 静态资源
+│   ├── README.md
 │   └── favicon.ico
 └── yarn.lock
 ```
@@ -108,6 +113,7 @@ Nuxt.js 会依据 `pages` 目录中的所有 `*.vue` 文件生成应用的路由
 
 使用`this.$axios` 调用接口：
 
+- 建议使用`$get $post $[methods]`等方法，respone中会直接返回请求的body
 - 可以在 `*.vue` 文件中的生命周期钩子函数中调用
 - 可以在 `methods` 里调用
 - 可以在 `store/*.js` 的 `actions` 里调用

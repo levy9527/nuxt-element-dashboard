@@ -37,6 +37,7 @@ if (isProd && apiServer) {
 }
 
 module.exports = {
+  srcDir: 'src/',
   mode: 'spa',
   env: {
     NO_LOGIN: process.env.NO_LOGIN,
@@ -44,7 +45,7 @@ module.exports = {
   },
   proxy: config.env[env.MODE],
   router: {
-    middleware: ['meta'],
+    middleware: ['meta', 'auth'],
     mode: 'hash'
   },
   /*
@@ -113,13 +114,19 @@ module.exports = {
   loading: {
     color: '#1890ff'
   },
+  /**
+   * Share variables, mixins, functions across all style files (no @import needed)
+   * @Link https://github.com/nuxt-community/style-resources-module/
+   */
+  styleResources: {
+    less: '~assets/var.less'
+  },
   css: [
     {
       src: '~assets/global.less',
       lang: 'less'
     }
   ],
-  srcDir: 'src/',
   plugins: [
     {
       src: '~/plugins/axios'
@@ -128,6 +135,10 @@ module.exports = {
       src: '~/plugins/element'
     }
   ],
-  modules: [['@nuxtjs/axios'], ['@nuxtjs/dotenv', {path: './'}]],
+  modules: [
+    '@nuxtjs/style-resources',
+    '@nuxtjs/axios',
+    ['@nuxtjs/dotenv', {path: './'}]
+  ],
   axios
 }

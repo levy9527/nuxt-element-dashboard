@@ -27,6 +27,7 @@ export const mutations = {
       })
     })
   },
+
   logout(state) {
     cookieKeys.forEach(key => {
       state[key] = ''
@@ -34,8 +35,10 @@ export const mutations = {
         path: cookiePath
       })
     })
-    this.$router.replace('/login')
+    // 清空state，跳转到login页的逻辑交给路由守卫
+    location.reload()
   },
+
   update(state, payload) {
     Object.keys(payload).forEach(k => {
       state[k] = payload[k]
@@ -61,6 +64,7 @@ export const actions = {
 
     dispatch('fetchUserAndMenuList')
   },
+
   async fetchUserAndMenuList({commit}) {
     let user = await this.$axios.$get(
       `/deepexi-permission/api/v1/users/currentUser`
@@ -77,9 +81,12 @@ export const actions = {
       })
     }
   },
+
   // 配置的元信息
   async fetchMetaInfo({commit}) {
-    let resp = await this.$axios.$get('/deepexi-permission/api/v1/configs')
+    let resp = await this.$axios.$get(
+      'http://39.98.50.163:3000/mock/691/xpaas-enterprise-contact/security/api/v1/configs'
+    )
     let meta = {}
     resp.payload.forEach(item => {
       meta[item.key] = item.value
