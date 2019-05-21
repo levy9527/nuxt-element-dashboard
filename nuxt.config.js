@@ -83,7 +83,7 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: 'Optimus',
+    title: '',
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
@@ -91,7 +91,7 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: '开发平台'
+        content: ''
       }
     ],
     link: [
@@ -112,7 +112,7 @@ module.exports = {
    ** Customize the progress bar color
    */
   loading: {
-    color: '#1890ff'
+    color: '#5D81F9'
   },
   /**
    * Share variables, mixins, functions across all style files (no @import needed)
