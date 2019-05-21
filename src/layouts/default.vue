@@ -12,7 +12,11 @@
       >
         <div class="logo">
           <nuxt-link to="/">
-            <img class="logo-img" :src="$store.state.meta.logo" alt="logo" />
+            <img
+              class="logo-img"
+              :src="$store.state.meta.logoSidebar"
+              alt="logo"
+            />
             <h1 class="logo-text">{{ $store.state.meta.appName }}</h1>
           </nuxt-link>
         </div>

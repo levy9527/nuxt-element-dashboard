@@ -35,11 +35,11 @@
     "dayjs": "^1.7.4",
     "dotenv": "^6.0.0",
     "el-data-table": "^1.1.1",
-    "element-ui": "^2.4.11",
+    "element-ui": "2.4.11",
     "js-cookie": "^2.2.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
-    "nuxt": "^2.3.2"
+    "nuxt": "^2.7.1"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^0.1.2",

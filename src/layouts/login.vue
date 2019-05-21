@@ -6,9 +6,9 @@
     <div class="login-form">
       <h1 class="title">
         <img
-          v-if="$store.state.meta.loginLogo"
+          v-if="$store.state.meta.logoLogin"
           class="logo-login"
-          :src="$store.state.meta.loginLogo"
+          :src="$store.state.meta.logoLogin"
           alt=""
         />
         <span v-else>{{ $store.state.meta.appName }}</span>
