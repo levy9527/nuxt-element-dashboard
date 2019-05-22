@@ -1,4 +1,7 @@
 require('dotenv').config()
+;['PUBLIC_PATH', 'API_SERVER', 'COOKIE_PATH', 'NO_LOGIN'].forEach(key =>
+  console.log('%s\t: %s', key, process.env[key])
+)
 
 const env = process.env
 const isProd = env.MODE == 'prod'
