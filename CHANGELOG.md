@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.3](https://github.com/levy9527/nuxt-element-dashboard/compare/v2.4.2...v2.4.3) (2019-05-31)
+
+
+### Bug Fixes
+
+* 格式化出错误代码 ([385642e](https://github.com/levy9527/nuxt-element-dashboard/commit/385642e))
+* **static:** static resources can't pack into the project  ([10040a7](https://github.com/levy9527/nuxt-element-dashboard/commit/10040a7)), closes [#16](https://github.com/levy9527/nuxt-element-dashboard/issues/16)
+
+
+
 ### [2.4.2](https://github.com/levy9527/nuxt-element-dashboard/compare/v2.4.1...v2.4.2) (2019-05-28)
 
 
